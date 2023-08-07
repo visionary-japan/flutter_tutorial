@@ -1,0 +1,12 @@
+title: "Flutterチュートリアル"
+summary: "Flutterの基礎を学習していきましょう。\n# 使う技術やSass\n- go_router\n- riverpod\n- hooks\n- supabase\n- isar\n- Shared Preference\netc..."
+topics: ["flutter", "dart"]
+published: true
+price: 0 # 有料の場合200〜5000
+# 本に含めるチャプターを順番に並べましょう
+chapters:
+  - section1
+  - section2
+  - section3
+  - section4
+  - section5
