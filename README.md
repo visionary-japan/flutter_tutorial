@@ -22,3 +22,7 @@ gcloud run deploy "$service_name" \
   --region asia-northeast1
 
 ```
+
+# 勉強会用リンク
+
+https://visionary-flutter-playground-mm2paxon7a-an.a.run.app/books/flutter_playground
