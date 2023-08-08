@@ -337,6 +337,7 @@ Row(
 - right: 右からの余白
 - left: 左からの余白
 - bottom: 下からの余白
+- child: 子要素
 
 ```dart
 Stack(
