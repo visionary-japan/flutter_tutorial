@@ -1,7 +1,6 @@
 ---
 title: "基本のウィジェット"
 ---
-
 :::message alert
 この教材では、Flutterに注力して学習を進めます。そのため、クラスやメソッドなど、文法の基礎的な箇所については省略します
 :::
@@ -128,31 +127,234 @@ https://dart.dev/effective-dart
 Flutterは、以下のようなWidgetを用いながらアプリ開発を行います。
 その他、パッケージを入れることで活用できるウィジェットなどもあるのですがここでは一旦
 Flutter（Google）が採用しているマテリアルデザインに準拠したウィジェットの紹介をします。
+また、各説明ではウィジェットの概要と主要なパラメーターを紹介します。全量ではないため、詳細はドキュメント等を参照しましょう。
+
 :::message
 iOSに特化したCupertinoウィジェットというシリーズも存在しますがここでは割愛します。Materialウィジェットが理解できれば十分に理解ができるはずです。
 :::
 
 ## Scaffold
+`Scaffold`ウィジェットは、Flutterにおけるスクリーンの土台です。全ての画面には原則`Scaffold`ウィジェットが必要で、その上にコンポーネント（部品）をそれぞれ配置します。
+
+![](https://storage.googleapis.com/zenn-user-upload/0c606489096f-20230809.png)
+
+`Scaffold`ウィジェットは、以下のようなパラメーターが指定できます
+- appBar: このプロパティに AppBar ウィジェットを指定することで、ページの上部にアプリバーを追加します。
+- body: 画面の主要部分に配置するウィジェット。
+- drawer: ドロワーメニューとして表示されるウィジェット。
+- floatingActionButton: 画面上に浮かぶアクションボタン。
+- bottomNavigationBar: 画面の下部に配置するナビゲーションバー。
+- backgroundColor: 背景色の設定。
+
 ```dart
+Scaffold(
+  appBar: AppBar(
+    title: Text('My Scaffold Example'),
+  ),
+  body: Center(
+    child: Text('Hello, World!'),
+  ),
+  drawer: Drawer(
+    child: ListView(
+      children: <Widget>[
+        ListTile(title: Text('Item 1')),
+        ListTile(title: Text('Item 2')),
+      ],
+    ),
+  ),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () {},
+    child: Icon(Icons.add),
+  ),
+  bottomNavigationBar: BottomNavigationBar(
+    items: const <BottomNavigationBarItem>[
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home),
+        label: 'Home',
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.business),
+        label: 'Business',
+      ),
+    ],
+  ),
+)
 ```
 ## AppBar
+`AppBar`は、`Scaffoldウィジェットに指定できるウィジェットで、画面上部にバーを配置するためのものです。
+
+![](https://storage.googleapis.com/zenn-user-upload/ead0e24ce65d-20230809.png)
+
+パラメーターは、以下のようなものを指定できます
+
+- title: 中央に表示されるウィジェット、通常はテキスト。
+- actions: 右側に配置するウィジェットのリスト。
+- leading: 左側に配置するウィジェット、通常はドロワーのメニューアイコン。
+- backgroundColor: 背景色。
+- elevation: 影の大きさ。
+
 ```dart
+AppBar(
+  title: Text('My AppBar Example'),
+  leading: IconButton(
+    icon: Icon(Icons.menu),
+    onPressed: () {},
+  ),
+  actions: <Widget>[
+    IconButton(
+      icon: Icon(Icons.search),
+      onPressed: () {},
+    ),
+  ],
+  backgroundColor: Colors.blue,
+  elevation: 5.0,
+)
 ```
+
 ## Container
+`Container`ウィジェットは、HTMLで言う`<div>`のようにchildに持つウィジェットの領域を確保したり、decorationで装飾したコンポーネントを作成することができます。
+
+![](https://storage.googleapis.com/zenn-user-upload/05d7251a2abe-20230809.png)
+
+`Container`ウィジェットには、以下のパラメーターが指定できます
+- child: このコンテナ内に配置する唯一の子ウィジェット。
+- margin: コンテナの外側の余白。
+- padding: コンテナの内側の余白。
+- decoration: ボックスに対する装飾（背景色、境界線など）。
+- widthとheight: コンテナのサイズ。
+- （color）:　背景色の指定。ただし、decorationとの共存は不可。
+
 ```dart
+Container(
+  margin: EdgeInsets.all(15.0),
+  padding: EdgeInsets.all(10.0),
+  decoration: BoxDecoration(
+    color: Colors.blue,
+    border: Border.all(color: Colors.black),
+    borderRadius: BorderRadius.circular(5.0),
+  ),
+  child: Text('Hello, World!'),
+)
 ```
 ## Text
+`Text`ウィジェットは、文字列を表示するためのウィジェットです。styleのパラメーターを指定すればさらに装飾をすることができます。
+
+![](https://storage.googleapis.com/zenn-user-upload/f7619a9fd712-20230809.png)
+
+- 第一引数: String型のデータを指定します
+- style: テキストのスタイル（色、フォントサイズ、フォントウェイトなど）。
+- textAlign: テキストの揃え位置（左、右、中央など）。
+- maxLines: 表示する最大行数。
+- overflow: テキストがコンテナを超える場合の動作（省略、切り捨てなど）。
+
 ```dart
+Text(
+  'Hello, World!',
+  style: TextStyle(
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold,
+    color: Colors.blue,
+  ),
+  textAlign: TextAlign.center,
+  maxLines: 2,
+  overflow: TextOverflow.ellipsis,
+)
 ```
 ## Column
+`Column`ウィジェットは様々なウィジェットを縦並びにすることができます。
+
+![](https://storage.googleapis.com/zenn-user-upload/ca8d15341497-20230809.png)
+
+`Column`ウィジェットには以下のパラメーターが指定できます。
+- children: 垂直に並べたい子ウィジェットのリスト。
+- mainAxisAlignment: 主軸方向（この場合は垂直方向）の子ウィジェットの配置を制御する。
+- crossAxisAlignment: 交差軸方向（この場合は水平方向）の子ウィジェットの配置を制御する。
+- verticalDirection: 子ウィジェットの垂直方向の順序。
+- mainAxisSize: 主軸のサイズを最小化または最大化するかを制御する。
+
 ```dart
+Column(
+  mainAxisAlignment: MainAxisAlignment.spaceAround, // 主軸方向の子ウィジェットの配置
+  crossAxisAlignment: CrossAxisAlignment.stretch,  // 交差軸方向の子ウィジェットの配置
+  mainAxisSize: MainAxisSize.min,                // 主軸のサイズを最小化
+  verticalDirection: VerticalDirection.down,    // 子ウィジェットの垂直方向の順序
+  children: <Widget>[
+    Text('Hello, World!'),
+    Text('Welcome to Flutter'),
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Click Me'),
+    ),
+  ],
+)
 ```
 ## Row
+`Row`ウィジェットは様々なウィジェットを横並びにすることができます。
+
+![](https://storage.googleapis.com/zenn-user-upload/b2fed7a4c15b-20230809.png)
+
+`Row`ウィジェットには以下のパラメーターが指定できます。
+
+- children: 水平に並べたい子ウィジェットのリスト。
+- mainAxisAlignment: 主軸方向（この場合は水平方向）の子ウィジェットの配置を制御する。
+- crossAxisAlignment: 交差軸方向（この場合は垂直方向）の子ウィジェットの配置を制御する。
+- verticalDirection: 子ウィジェットの垂直方向の順序。
+- mainAxisSize: 主軸のサイズを最小化または最大化するかを制御する。
+- textDirection: 子ウィジェットの水平方向のテキスト順序。
+
 ```dart
+Row(
+  mainAxisAlignment: MainAxisAlignment.spaceEvenly, // 主軸方向の子ウィジェットの配置
+  crossAxisAlignment: CrossAxisAlignment.center,     // 交差軸方向の子ウィジェットの配置
+  mainAxisSize: MainAxisSize.max,                   // 主軸のサイズを最大化
+  verticalDirection: VerticalDirection.down,       // 子ウィジェットの垂直方向の順序
+  textDirection: TextDirection.ltr,                // 子ウィジェットの水平方向のテキスト順序
+  children: <Widget>[
+    Text('Hello,'),
+    Text('World!'),
+    ElevatedButton(
+      onPressed: () {},
+      child: Text('Click Me'),
+    ),
+  ],
+)
 ```
-## Stack
+## Stack / Positioned
+`Stack`ウィジェットはウィジェットを重ねることができます。
+また、`Stack`のchildrenに指定できる専用の`Positioned`というウィジェットもあります。
+`Positioned`を用いればStackの重なりを微調整できます。
+
+![](https://storage.googleapis.com/zenn-user-upload/c7786f74e28c-20230809.png)
+
+`Stack`には以下のパラメーターが指定することができます
+- alignment: childrenの並びを設定できます
+- textDirection: childrenに指定したテキストの方向を設定します
+- fit: 親領域まで引き伸ばし設定ができます
+- children: 重ねるウィジェットを指定します。配列のindexが若い方が下の要素になります。
+
+`Positioned`には以下のパラメーターを指定することができます
+- top: 上からの余白
+- right: 右からの余白
+- left: 左からの余白
+- bottom: 下からの余白
+
 ```dart
+Stack(
+  children: <Widget>[
+    Container(
+      color: Colors.red,
+    ),
+    Positioned(
+      top: 100,
+      left: 100,
+      child: Container(
+        color: Colors.blue,
+      ),
+    ),
+  ],
+)
 ```
+
 ## ListView
 ```dart
 ```
