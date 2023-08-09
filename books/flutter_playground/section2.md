@@ -4,6 +4,9 @@ title: "基本のウィジェット"
 :::message alert
 この教材では、Flutterに注力して学習を進めます。そのため、クラスやメソッドなど、文法の基礎的な箇所については省略します
 :::
+:::message alert
+この教材では、Flutterに注力して学習を進めます。そのため、クラスやメソッドなど、文法の基礎的な箇所については省略します
+:::
 
 # 1. Flutterの初期状態を確認しよう
 
@@ -122,6 +125,7 @@ FlutterはDartであることから、「良いコード、悪いコード」や
 こちらは慣れてきてからでも良いので、一度目を通すようにしてください。
 
 https://dart.dev/effective-dart
+
 
 # 3.Widget一覧（抜粋）
 Flutterは、以下のようなWidgetを用いながらアプリ開発を行います。
@@ -514,3 +518,155 @@ Stack(
 以上です！
 まだまだFlutter系ウィジェットはたくさんあるので気になった方は調べてみてください！
 
+# おまけ IDEの便利なショートカット
+Flutterのウィジェット（クラス）をそのまま書いていくと大変です。
+AndroidStudioやVSCodeでFlutterのプラグインを導入していればショートカットで簡単にウィジェットの生成ができます。いくつか紹介するので覚えて有効利用してください。
+
+ちなみに、私はFlutter開発の際以下の画像のようにシミュレーターとIDEを画面分割して用いています
+
+![](https://storage.googleapis.com/zenn-user-upload/75eabe145b09-20230810.png =600x)
+
+### Stateless/Stateful ウィジェットの生成
+`StatelessWidget`の場合は`stl`, `StatefulWidgetの場合は`stf`と入力すれば以下のような候補が出ます。（AndroidStudio, VS Code共通です）
+
+![](https://storage.googleapis.com/zenn-user-upload/1d46aaab76ff-20230810.png =600x)
+
+その次に、stlessやstfulなどの候補を選ぶと以下のように土台が一括出力されます
+
+![](https://storage.googleapis.com/zenn-user-upload/bd5d0dbcbf68-20230810.png =600x)
+
+最初は`MyHome`となっていますが、そのまま`HomePage`など入力するとクラス名も指定できます
+
+![](https://storage.googleapis.com/zenn-user-upload/287e0b4c4897-20230810.png =600x)
+
+#### gifで確認
+
+![](https://storage.googleapis.com/zenn-user-upload/5aa49cfec28b-20230810.gif =600x)
+
+### Stateless -> Statefulの変換
+最初はウィジェットを組むだけでしたが、後からStateの管理をしたくなった場合はStatefulウィジェットに切り替える必要があります。
+そうしたい場合、`StatelessWidget`にフォーカスした状態で同じコマンドを実行してください。そうすると以下のように出るため`Convert to StatefulWidget`を選択してください。
+
+![](https://storage.googleapis.com/zenn-user-upload/bb7e18aca0da-20230810.png)
+
+
+### ウィジェットでラップする
+IDEやOSで異なりますが、ラップしたいクラスにフォーカスしている状態で以下のキーを押下してください。
+今回は、Container()にフォーカスしてから実行しましょう
+
+:::message
+「Container」の文字列のどこかにフォーカスするようにしてください。
+:::
+
+```dart
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(); // ここにフォーカス
+  }
+}
+```
+
+- AndroidStudio
+	- Windows -> Alt + Enter
+	- Mac -> Option + Enter
+
+- VS Code
+	- Widows -> Windows + ピリオド
+	- Mac -> Command + ピリオド
+
+キーを押すと、以下のように候補が出ます。
+
+![](https://storage.googleapis.com/zenn-user-upload/174d52b26787-20230810.png w=600x)
+
+例えば`Wrap with Center`を選択すると以下のようになります。
+
+```dart
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(child: Container()); // Centerで囲われた
+  }
+}
+```
+
+### ウィジェットの親子関係を入れ替える
+例えば、下記のコードのSizedBoxとElevatedButtonを入れ替えたい場合も同じショートカットで実施できます。
+```dart
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text('サンプル'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+![](https://storage.googleapis.com/zenn-user-upload/486a75af2e53-20230810.png)
+
+`ElebatedButton`にフォーカスして実行すれば`Swap with parent`、`SizedBox`にフォーカスして実行すれば`Swap with child`と出るので選択すれば`SizedBox`と`ElevatedButton`の親子関係が入れ替わります。
+
+また、すべてのウィジェットが候補として出てくるわけではありません。候補がない場合は、一番上に出てくる`Wrap with widget...`を選択してからウィジェット名を手動で記載すればラップ可能です。
+
+
+### 不要なウィジェットの削除
+以下のコードから、SizedBoxを消したいとします。その場合、SizedBoxにフォーカスして同じショートカットを実行してください。そうすると、`Remove this Widget`が出てくるので選択してください。
+そうすれば、`SizedBox`は`height`や`width`のようなパラメーターを含め丸ごと削除されます
+
+```dart
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox(
+        width: 100,
+        height: 60,
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text('サンプル'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+### ウィジェットをコンポーネント化
+ウィジェットを重ねて行くうちに、コードが肥大化した場合、特定部分をウィジェットとして切り出すことをお勧めします。コマンドは上記同様で、選択肢は`Extract Widget`を選択してください。
+動作については以下のgifを確認してください。
+
+![](https://storage.googleapis.com/zenn-user-upload/fbe89b43597b-20230810.gif)
