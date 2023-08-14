@@ -1,7 +1,6 @@
 ---
 title: "環境構築"
 ---
-
 # 1. IDEの準備をする
 Flutterで開発をするためにIDEを用意しましょう！
 今回インストールするIDEは全部で3つとなります。
@@ -136,7 +135,7 @@ fvm global 3.10.6
 flutter --version
 ```
 
-# 2. Flutterプロジェクトを立ち上げてみる
+# 3. Flutterプロジェクトを立ち上げてみる
 iOSの場合は不要ですが、Androidで動作確認をする場合エミュレーター（仮想端末）の設定が必要です。
 以下のドキュメントを参考に、AndroidStudioで端末設定をしてみてください。
 
@@ -176,6 +175,29 @@ Androidの場合は、画面右上の以下のアイコンをタップしてく�
 そうすると、以下のように候補が出てくるので任意の端末を選択してください。
 ![](https://storage.googleapis.com/zenn-user-upload/c8ae452ff77e-20230808.png =300x)
 
+### 最終チェック 💡
+全ての作業が完了したら、一旦設定がうまくいっているか確認しましょう。
+```
+fvm flutter doctor
+```
+以下のように結果が出れば成功です！
+もしエラーが発生する場合はエラーメッセージに従って解消してください
+
+```:zsh
+Doctor summary (to see all details, run flutter doctor -v):
+[✓] Flutter (Channel stable, 3.10.6, on macOS 13.4 22F66 darwin-x64, locale
+    ja-JP)
+[✓] Android toolchain - develop for Android devices (Android SDK version 33.0.1)
+[✓] Xcode - develop for iOS and macOS (Xcode 14.3.1)
+[✓] Chrome - develop for the web
+[✓] Android Studio (version 2022.1)
+[✓] VS Code (version 1.69.1)
+[✓] Connected device (2 available)
+[✓] Network resources
+
+• No issues found!
+```
+
 
 ### エミュレーター・シミュレーターで動かしてみる
 
@@ -209,3 +231,23 @@ Androidの場合は、画面右上の以下のアイコンをタップしてく�
 ここまでできれば環境構築は完了です！
 
 ![](https://storage.googleapis.com/zenn-user-upload/9314f41f983f-20230808.png =300x)
+
+# 4. Flutterコマンド一覧
+Flutterには、便利なコマンドがいくつかあります。
+代表的なコマンドを紹介するため、困った際は活用してみてください。
+
+`flutter doctor`: Flutter環境のステータスを表示します。Flutterをインストールして実行する際に、このコマンドを実行してエラーがないか確認してください。
+`flutter create <project_name>`: 新しいFlutterプロジェクトを作成します。プロジェクト名を指定し、このコマンドを実行すると、新しいFlutterプロジェクトが作成されます。
+`flutter run`: 現在のFlutterプロジェクトを実行します。このコマンドを実行すると、現在のFlutterプロジェクトがデバイスまたはエミュレーターで実行されます。
+`flutter build <platform>`: 現在のFlutterプロジェクトを指定されたプラットフォームにビルドします。プラットフォームには、Android、iOS、Web、Desktopなどがあります。
+`flutter test`: 現在のFlutterプロジェクトのテストコードを実行します。テストコードを実行することで、プロジェクトの品質を保証することができます。
+`flutter analyze`: 現在のFlutterプロジェクトのコード品質を分析します。コード品質を分析することで、プロジェクトのパフォーマンスを向上させることができます。
+`flutter format`: 現在のFlutterプロジェクトのコードフォーマットを整えます。コードフォーマットを整えることで、プロジェクトのコードが読みやすくなり、メンテナンスしやすくなります。
+`flutter clean`: 現在のFlutterプロジェクトのビルド出力を削除します。ビルド出力を削除することで、プロジェクトのビルド速度を向上させることができます。
+`flutter help`: Flutterコマンドのヘルプを表示します。コマンドラインからflutter helpと入力すると、Flutterコマンドのヘルプを表示できます。
+`flutter pub get`: Flutterプロジェクトに依存しているすべてのパッケージをダウンロードします。
+`flutter pub outdated`: Flutterプロジェクトに依存しているパッケージのアップデートをチェックします。
+`flutter pub upgrade`: Flutterプロジェクトに依存しているすべてのパッケージを最新バージョンにアップデートします。
+`flutter pub add <package_name>`: Flutterプロジェクトにパッケージを追加します。
+`flutter pub remove <package_name>`: Flutterプロジェクトからパッケージを削除します。
+`flutter pub list`: Flutterプロジェクトに依存しているすべてのパッケージを一覧表示します。
