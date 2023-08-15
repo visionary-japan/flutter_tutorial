@@ -5,11 +5,20 @@ published: true
 price: 0 # 有料の場合200〜5000
 # 本に含めるチャプターを順番に並べましょう
 chapters:
-  - section1
-  - section2
-  - section3
-  - section8
-  - section4
-  - section5
-  - section6
-  - section7
+  - 環境構築
+  - 基本のウィジェット
+  - アプリのテーマ設定
+  - パッケージの選定基準について
+  - 画面遷移
+  - 状態管理の基礎
+  - 状態管理_riverpod
+  - 状態管理_riverpod_2
+  - 非同期処理
+  - ローカルデータベース
+  - リモートデータベース
+  - アーキテクチャ
+  - push通知
+  - 認証機能
+  - Functions
+  - テスト
+
