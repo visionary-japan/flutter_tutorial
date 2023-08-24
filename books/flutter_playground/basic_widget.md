@@ -1,7 +1,6 @@
 ---
 title: "基本のウィジェット"
 ---
-
 :::message alert
 この教材では、Flutterに注力して学習を進めます。そのため、クラスやメソッドなど、文法の基礎的な箇所については省略します
 :::
@@ -131,11 +130,20 @@ Flutterは、以下のようなWidgetを用いながらアプリ開発を行い�
 Flutter（Google）が採用しているマテリアルデザインに準拠したウィジェットの紹介をします。
 また、各説明ではウィジェットの概要と主要なパラメーターを紹介します。全量ではないため、詳細はドキュメント等を参照しましょう。
 
+### Material library
+https://api.flutter.dev/flutter/material/material-library.html#classes
+
+### Widgets library
+https://api.flutter.dev/flutter/widgets/widgets-library.html#classes
+
 :::message
 iOSに特化したCupertinoウィジェットというシリーズも存在しますがここでは割愛します。Materialウィジェットが理解できれば十分に理解ができるはずです。
 :::
 
 ## Scaffold
+
+https://api.flutter.dev/flutter/material/Scaffold-class.html
+
 `Scaffold`ウィジェットは、Flutterにおけるスクリーンの土台です。全ての画面には原則`Scaffold`ウィジェットが必要で、その上にコンポーネント（部品）をそれぞれ配置します。
 
 ![](https://storage.googleapis.com/zenn-user-upload/0c606489096f-20230809.png)
@@ -183,6 +191,9 @@ Scaffold(
 )
 ```
 ## AppBar
+
+https://api.flutter.dev/flutter/material/AppBar-class.html
+
 `AppBar`は、`Scaffoldウィジェットに指定できるウィジェットで、画面上部にバーを配置するためのものです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/ead0e24ce65d-20230809.png)
@@ -214,6 +225,9 @@ AppBar(
 ```
 
 ## Container
+
+https://api.flutter.dev/flutter/widgets/Container-class.html
+
 `Container`ウィジェットは、HTMLで言う`<div>`のようにchildに持つウィジェットの領域を確保したり、decorationで装飾したコンポーネントを作成することができます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/05d7251a2abe-20230809.png)
@@ -239,10 +253,14 @@ Container(
 )
 ```
 ## Text
+
+https://api.flutter.dev/flutter/widgets/Text-class.html
+
 `Text`ウィジェットは、文字列を表示するためのウィジェットです。styleのパラメーターを指定すればさらに装飾をすることができます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/f7619a9fd712-20230809.png)
 
+`Text`ウィジェットには以下のパラメーターが指定できます
 - 第一引数: String型のデータを指定します
 - style: テキストのスタイル（色、フォントサイズ、フォントウェイトなど）。
 - textAlign: テキストの揃え位置（左、右、中央など）。
@@ -262,7 +280,21 @@ Text(
   overflow: TextOverflow.ellipsis,
 )
 ```
+## Center
+https://api.flutter.dev/flutter/widgets/Center-class.html
+`Center`ウィジェットは、childの要素を親要素の中央に配置する手軽なウィジェットになります。
+
+単純なウィジェットかもしれませんが、以下のパラメーターを指定することができある程度カスタム可能です。
+
+
+`Center`
+```dart
+```
+
 ## Column
+
+https://api.flutter.dev/flutter/widgets/Column-class.html
+
 `Column`ウィジェットは様々なウィジェットを縦並びにすることができます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/ca8d15341497-20230809.png)
@@ -291,6 +323,9 @@ Column(
 )
 ```
 ## Row
+
+https://api.flutter.dev/flutter/widgets/Row-class.html
+
 `Row`ウィジェットは様々なウィジェットを横並びにすることができます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/b2fed7a4c15b-20230809.png)
@@ -322,6 +357,11 @@ Row(
 )
 ```
 ## Stack / Positioned
+
+https://api.flutter.dev/flutter/widgets/Stack-class.html
+
+https://api.flutter.dev/flutter/widgets/Positioned-class.html
+
 `Stack`ウィジェットはウィジェットを重ねることができます。
 また、`Stack`のchildrenに指定できる専用の`Positioned`というウィジェットもあります。
 `Positioned`を用いればStackの重なりを微調整できます。
@@ -359,6 +399,9 @@ Stack(
 ```
 
 ## ListView
+
+https://api.flutter.dev/flutter/widgets/ListView-class.html
+
 `ListView`ウィジェットは、リストビューを作成するために使用されます。リストビューとは、複数の項目を横に並べて表示するウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/a3a2202911a6-20230815.png)
@@ -384,6 +427,9 @@ ListView(
 );
 ```
 ## GridView
+
+https://api.flutter.dev/flutter/widgets/GridView-class.html
+
 `GridView`ウィジェットは、グリッドビューを作成するために使用されます。グリッドビューとは、複数の項目を縦横に並べて表示するウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/72874fad59ed-20230815.png)
@@ -412,6 +458,8 @@ GridView(
 );
 ```
 ## ElevatedButton
+https://api.flutter.dev/flutter/material/ElevatedButton-class.html
+
 `ElevatedButton`ウィジェットは、押し下げ可能なボタンを作成するために使用されます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/77604cf08979-20230815.png)
@@ -432,6 +480,8 @@ ElevatedButton(
 );
 ```
 ## FloatingActionButton
+https://api.flutter.dev/flutter/material/FloatingActionButton-class.html
+
 `FloatingActionButton`ウィジェットは、画面の下部に配置される丸いボタンを作成するために使用されます。主に、ユーザーが画面の下部からすばやく操作できるようにするために使用されます。
 
 ![](https://storage.googleapis.com/zenn-user-upload/eb53d7f6b9fc-20230815.png)
@@ -456,6 +506,8 @@ FloatingActionButton(
 );
 ```
 ## DropdownButton
+https://api.flutter.dev/flutter/material/DropdownButton-class.html
+
 `DropdownButton`ウィジェットは、ドロップダウンリストを作成するために使用されます。ドロップダウンリストは、ユーザーが複数の選択肢から選ぶことができるウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/ee6413c8f12e-20230815.png)
@@ -485,6 +537,8 @@ DropdownButton(
 );
 ```
 ## PopupMenuButton
+https://api.flutter.dev/flutter/material/PopupMenuButton-class.html
+
 PopupMenuButtonウィジェットは、ポップアップメニューを作成するために使用されます。ポップアップメニューは、ユーザーが特定の項目を選択できるウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/83ae4281ee9f-20230815.png)
@@ -511,6 +565,8 @@ PopupMenuButton(
 );
 ```
 ## Checkbox
+https://api.flutter.dev/flutter/material/Checkbox-class.html
+
 Checkboxウィジェットは、チェックボックスを作成するために使用されます。チェックボックスは、ユーザーが特定のオプションをオン/オフにできるウィジェットです。
 
 ~ 画像 ~
@@ -535,6 +591,8 @@ Checkbox(
 );
 ```
 ## Radio
+https://api.flutter.dev/flutter/material/Radio-class.html
+
 Radioウィジェットは、ラジオボタンを作成するために使用されます。ラジオボタンは、ユーザーが複数の選択肢から1つのオプションを選択できるウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/abce2d31be22-20230815.png)
@@ -560,6 +618,8 @@ Radio(
 );
 ```
 ## Switch
+https://api.flutter.dev/flutter/material/Switch-class.html
+
 Switchウィジェットは、スイッチを作成するために使用されます。スイッチは、ユーザーがオン/オフを切り替えることができるウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/e192ba0daa01-20230815.png)
@@ -584,6 +644,8 @@ Switch(
 );
 ```
 ## Slider
+https://api.flutter.dev/flutter/material/Slider-class.html
+
 Sliderウィジェットは、スライダーを作成するために使用されます。スライダーは、ユーザーが値を調整できるウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/333ec1362185-20230815.png)
@@ -614,8 +676,13 @@ Slider(
   inactiveColor: Colors.grey,
 );
 ```
-## DatePicker
-DatePickerウィジェットは、日付ピッカーを作成するために使用されます。日付ピッカーは、ユーザーが日付を選択できるウィジェットです。
+## DatePickerDialog
+
+https://api.flutter.dev/flutter/material/DatePickerDialog-class.html
+
+https://api.flutter.dev/flutter/material/showDatePicker.html
+
+`DatePickerDialog`ウィジェットは、日付選択ダイアログを作成するために使用されます。日付選択ダイアログは、ユーザーが日付を選択できるウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/6f65f702b522-20230815.png)
 
@@ -629,7 +696,7 @@ DatePickerウィジェットには以下のパラメーターが指定できま�
 - style: 日付ピッカーのスタイル。
 
 ```dart
-DatePicker(
+DatePickerDialog(
   value: _selectedDate,
   firstDate: DateTime.now(),
   lastDate: DateTime.now().add(Duration(days: 365)),
@@ -646,12 +713,14 @@ DatePicker(
 );
 ```
 
-## TimePicker
+## TimePickerDialog
+https://api.flutter.dev/flutter/material/TimePickerDialog-class.html
+
 TimePickerウィジェットは、時間ピッカーを作成するために使用されます。時間ピッカーは、ユーザーが時間を選択できるウィジェットです。
 
 ![](https://storage.googleapis.com/zenn-user-upload/e8c345c1bcd8-20230815.png)
 
-TimePickerウィジェットには以下のパラメーターが指定できます。
+`TimePickerDialog`ウィジェットには以下のパラメーターが指定できます。
 
 - value: 時間ピッカーで選択されている時間。
 - initialTime: 時間ピッカーで最初に表示される時間。
@@ -659,17 +728,11 @@ TimePickerウィジェットには以下のパラメーターが指定できま�
 - style: 時間ピッカーのスタイル。
 
 ```Dart
-TimePickerウィジェットは、時間ピッカーを作成するために使用されます。時間ピッカーは、ユーザーが時間を選択できるウィジェットです。
 
-TimePickerウィジェットには以下のパラメーターが指定できます。
-
-value: 時間ピッカーで選択されている時間。
-initialTime: 時間ピッカーで最初に表示される時間。
-onChanged: 時間ピッカーで選択された時間が変更されたときに呼び出される関数。
-style: 時間ピッカーのスタイル。
 ```
 
 ## SnackBar
+https://api.flutter.dev/flutter/material/SnackBar-class.html
 
 ![](https://storage.googleapis.com/zenn-user-upload/e5512701440e-20230815.png)
 
@@ -696,6 +759,8 @@ ScaffoldMessenger.of(context).showSnackBar(
 );
 ```
 ## AlertDialog
+https://api.flutter.dev/flutter/material/AlertDialog-class.html
+
 AlertDialogウィジェットは、ユーザーに確認メッセージを表示するためのウィジェットです。ユーザーに確認を求めたり、警告メッセージを表示したりするために使用できます。
 
 AlertDialogウィジェットには以下のパラメーターが指定できます。
@@ -732,77 +797,119 @@ showDialog(
 );
 ```
 ## BottomNavigationBar
+https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
+
 ```dart
 ```
 ## TabBar
+https://api.flutter.dev/flutter/material/TabBar-class.html
+
 ```dart
 ```
 ## Drawer
+https://api.flutter.dev/flutter/material/Drawer-class.html
+
 ```dart
 ```
 ## Tooltip
+https://api.flutter.dev/flutter/material/Tooltip-class.html
+
 ```dart
 ```
 ## Card
+https://api.flutter.dev/flutter/material/Card-class.html
+
 ```dart
 ```
 ## DataTable
+https://api.flutter.dev/flutter/material/DataTable-class.html
+
 ```dart
 ```
 ## Image
+https://api.flutter.dev/flutter/widgets/Image-class.html
+
 ```dart
 ```
 ## Icon
+https://api.flutter.dev/flutter/widgets/Icon-class.html
+
 ```dart
 ```
 ## Chip
+https://api.flutter.dev/flutter/material/Chip-class.html
+
 ```dart
 ```
 ## Divider
+https://api.flutter.dev/flutter/material/Divider-class.html
+
 ```dart
 ```
-## ProgressIndicator
+## ProgressIndicator/CircularProgressIndicator
+https://api.flutter.dev/flutter/material/ProgressIndicator-class.html
+https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html
 ```dart
 ```
-## TextField
+## TextFormField
+https://api.flutter.dev/flutter/material/TextFormField-class.html
+https://api.flutter.dev/flutter/material/TextField-class.html
+
 ```dart
 ```
 ## SelectableText
+https://api.flutter.dev/flutter/material/SelectableText-class.html
+
 ```dart
 ```
 ## RichText
+https://api.flutter.dev/flutter/widgets/RichText-class.html
+
 ```dart
 ```
 ## InkWell
+https://api.flutter.dev/flutter/material/InkWell-class.html
+
 ```dart
 ```
 ## GestureDetector
+https://api.flutter.dev/flutter/widgets/GestureDetector-class.html
+
 ```dart
 ```
 ## FutureBuilder
+https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html
 ```dart
 ```
 ## StreamBuilder
+https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html
+
 ```dart
 ```
 ## AnimatedContainer
+https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html
+
 ```dart
 ```
 ## Hero
+https://api.flutter.dev/flutter/widgets/Hero-class.html
 ```dart
 ```
 ## Transform
+https://api.flutter.dev/flutter/widgets/Transform-class.html
+
 ```dart
 ```
 ## Wrap
+https://api.flutter.dev/flutter/widgets/Wrap-class.html
 ```dart
 ```
 ## Align
+https://api.flutter.dev/flutter/widgets/Align-class.html
+
 ```dart
 ```
-## Center
-```dart
-```
+
 ## Expanded
 ```dart
 ```
