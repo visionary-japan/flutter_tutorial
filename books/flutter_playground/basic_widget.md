@@ -1,6 +1,7 @@
 ---
 title: "基本のウィジェット"
 ---
+
 :::message alert
 この教材では、Flutterに注力して学習を進めます。そのため、クラスやメソッドなど、文法の基礎的な箇所については省略します
 :::
@@ -285,11 +286,18 @@ https://api.flutter.dev/flutter/widgets/Center-class.html
 `Center`ウィジェットは、childの要素を親要素の中央に配置する手軽なウィジェットになります。
 
 単純なウィジェットかもしれませんが、以下のパラメーターを指定することができある程度カスタム可能です。
+- widthFactor: この値が設定されている場合、Centerウィジェットの幅は、子ウィジェットの幅にこの値を掛けたものになります。例えば、2.0を設定すると、子ウィジェットの幅の2倍の幅を持つようになります。
+- heightFactor: この値が設定されている場合、Centerウィジェットの高さは、子ウィジェットの高さにこの値を掛けたものになります。例えば、1.5を設定すると、子ウィジェットの高さの1.5倍の高さを持つようになります。
+- child: Centerウィジェットの中央に配置するウィジェットを指定します。これが中央に表示される内容となります。
 
-
-`Center`
 ```dart
+Center(
+  widthFactor: 2.0,
+  heightFactor: 1.5,
+  child: Text('中央に配置されたテキスト'),
+)
 ```
+上記の例は、テキストを中央に配置し、そのテキストの幅の2倍、高さの1.5倍のサイズを持つCenterウィジェットを作成します。
 
 ## Column
 
@@ -457,6 +465,42 @@ GridView(
   ),
 );
 ```
+
+## ListTile
+https://api.flutter.dev/flutter/material/ListTile-class.html
+
+ListTileは、テキストと先頭または末尾のアイコンを含む固定の高さの行を表します。ListTileは、アイコンや他のウィジェット（チェックボックスなど）でフランクされた1〜3行のテキストを含むことができます。タイルのアイコン（または他のウィジェット）は、leadingおよびtrailingパラメータで定義されます。テキストの最初の行はオプションではなく、titleで指定されます。オプションのsubtitleの値は、追加のテキスト行のスペースを占有するか、isThreeLineがtrueの場合は2行を占有します。denseがtrueの場合、このタイルの全体の高さと、タイトルとサブタイトルウィジェットをラップするDefaultTextStylesのサイズが縮小されます。
+
+ListTileは以下のパラメーターを持ちます
+
+- leading: タイトルの前に表示するウィジェット。
+- title: タイルの主要なコンテンツ。
+- subtitle: タイトルの下に表示する追加のコンテンツ。
+- trailing: タイトルの後に表示するウィジェット。
+- isThreeLine: タイルが3行のテキストを表示するかどうか。
+- dense: タイルが垂直に密集したリストの一部であるかどうか。
+- enabled: このリストタイルがインタラクティブであるかどうか。
+- onTap: タイルがタップされたときのコールバック。
+- onLongPress: タイルが長押しされたときのコールバック。
+
+```dart
+ListTile(
+  leading: Icon(Icons.star),
+  title: Text('タイトル'),
+  subtitle: Text('サブタイトル'),
+  trailing: Icon(Icons.arrow_forward),
+  isThreeLine: false,
+  dense: false,
+  enabled: true,
+  onTap: () {
+    // タップ時の処理
+  },
+  onLongPress: () {
+    // 長押し時の処理
+  },
+)
+```
+
 ## ElevatedButton
 https://api.flutter.dev/flutter/material/ElevatedButton-class.html
 
@@ -569,7 +613,7 @@ https://api.flutter.dev/flutter/material/Checkbox-class.html
 
 Checkboxウィジェットは、チェックボックスを作成するために使用されます。チェックボックスは、ユーザーが特定のオプションをオン/オフにできるウィジェットです。
 
-~ 画像 ~
+![](https://storage.googleapis.com/zenn-user-upload/5c1f36425943-20230825.png)
 
 Checkboxウィジェットには以下のパラメーターが指定できます。
 - value: チェックボックスの値。
@@ -799,22 +843,182 @@ showDialog(
 ## BottomNavigationBar
 https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
 
+画面下部にナビゲーションバーを作成するためのウィジェットです。通常、3〜5のボタンを配置するようになります。
+原則、画面遷移をしても変化しないバーになります。
+
+`BottomNavigationBar`は以下のパラメーターを持ちます
+- items: ナビゲーションバー内のアイテムを定義します。これらのアイテムは、テキストラベル、アイコン、またはその両方で構成されることがあります。
+- onTap: アイテムがタップされたときに呼び出されるコールバック関数です。
+- currentIndex: 現在アクティブなアイテムのインデックスです。
+- elevation: BottomNavigationBarのz座標です。
+- type: ナビゲーションバーのタイプ（fixedまたはshifting）を定義します。
+- backgroundColor: ナビゲーションバー自体の色です。
+- iconSize: すべてのBottomNavigationBarItemアイコンのサイズです。
+- selectedItemColor: 選択されたアイテムのアイコンとラベルの色です。
+- unselectedItemColor: 選択されていないアイテムのアイコンとラベルの色です。
+- selectedFontSize: 選択されたアイテムラベルのフォントサイズです。
+- unselectedFontSize: 選択されていないアイテムラベルのフォントサイズです。
+- showSelectedLabels: 選択されたBottomNavigationBarItemのラベルを表示するかどうか。
+- showUnselectedLabels: 選択されていないBottomNavigationBarItemsのラベルを表示するかどうか。
+
 ```dart
+BottomNavigationBar(
+  items: const <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.business),
+      label: 'Business',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.school),
+      label: 'School',
+    ),
+  ],
+  onTap: (index) {
+    // タップされたアイテムのインデックスを処理
+  },
+  currentIndex: 0,
+  elevation: 8.0,
+  type: BottomNavigationBarType.fixed,
+  fixedColor: Colors.blue,
+  backgroundColor: Colors.white,
+  iconSize: 24.0,
+  selectedItemColor: Colors.red,
+  unselectedItemColor: Colors.grey,
+  selectedIconTheme: IconThemeData(color: Colors.red),
+  unselectedIconTheme: IconThemeData(color: Colors.grey),
+  selectedFontSize: 14.0,
+  unselectedFontSize: 12.0,
+  selectedLabelStyle: TextStyle(color: Colors.red),
+  unselectedLabelStyle: TextStyle(color: Colors.grey),
+  showSelectedLabels: true,
+  showUnselectedLabels: false,
+  mouseCursor: SystemMouseCursors.click,
+  enableFeedback: true,
+  landscapeLayout: BottomNavigationBarLandscapeLayout.spread,
+  useLegacyColorScheme: true,
+),
 ```
 ## TabBar
 https://api.flutter.dev/flutter/material/TabBar-class.html
 
+TabBarウィジェットは、Material Designの主要なタブバーを作成するために使用されます。主要なタブは、上部アプリバーの下のコンテンツペインの上部に配置され、主要なコンテンツの目的地を表示します。
+
+- tabs: タブのリスト。通常、2つ以上のTabウィジェットが含まれます。
+- controller: タブの選択とアニメーションの状態を制御します。
+- isScrollable: タブバーが水平方向にスクロール可能かどうか。
+- indicatorColor: 選択されたタブの下に表示されるラインの色。
+- indicatorWeight: 選択されたタブの下に表示されるラインの厚さ。
+- indicatorPadding: インジケータのパディング。
+- labelColor: 選択されたタブラベルの色。
+- unselectedLabelColor: 選択されていないタブラベルの色。
+- mouseCursor: 個々のタブウィジェット上でマウスポインタが入るかホバーするときのカーソル。
+- onTap: タブバーがタップされたときに呼び出されるオプションのコールバック。
+
 ```dart
+TabBar(
+  tabs: [Tab(text: 'Tab 1'), Tab(text: 'Tab 2')],
+  controller: _tabController,
+  isScrollable: true,
+  indicatorColor: Colors.blue,
+  indicatorWeight: 2.0,
+  indicatorPadding: EdgeInsets.zero,
+  labelColor: Colors.black,
+  unselectedLabelColor: Colors.grey,
+  mouseCursor: SystemMouseCursors.click,
+  onTap: (index) {
+    // タブがタップされたときの処理
+  },
+)
 ```
+
 ## Drawer
 https://api.flutter.dev/flutter/material/Drawer-class.html
 
+Drawerウィジェットは、FlutterのMaterial Designパネルで、Scaffoldの端から水平にスライドしてアプリケーション内のナビゲーションリンクを表示します。
+
+- backgroundColor: Drawerの内容を保持するマテリアルの色。
+- elevation: Drawerを親に対して配置するz座標。
+- shadowColor: Drawerのマテリアルの下に描画されるドロップシャドウの色。
+- surfaceTintColor: Drawerの背景色に対する表面の色合い。
+- shape: Drawerの形状。
+- width: Drawerの幅。
+- child: 木構造の下のウィジェット。
+- semanticLabel: Drawerが開いたり閉じたりする際に、アクセシビリティフレームワークが画面遷移を発表するためのセマンティックラベル。
+- clipBehavior: このオプションに従ってコンテンツがクリップされるかどうか。
+
+
 ```dart
+Scaffold(
+ appBar: AppBar(
+   title: const Text('Drawer Demo'),
+ ),
+ drawer: Drawer(
+   child: ListView(
+     padding: EdgeInsets.zero,
+     children: const <Widget>[
+       DrawerHeader(
+         decoration: BoxDecoration(
+           color: Colors.blue,
+         ),
+         child: Text(
+           'Drawer Header',
+           style: TextStyle(
+             color: Colors.white,
+             fontSize: 24,
+           ),
+         ),
+       ),
+       ListTile(
+         leading: Icon(Icons.message),
+         title: Text('Messages'),
+       ),
+       ListTile(
+         leading: Icon(Icons.account_circle),
+         title: Text('Profile'),
+       ),
+       ListTile(
+         leading: Icon(Icons.settings),
+         title: Text('Settings'),
+       ),
+     ],
+   ),
+ ),
+)
 ```
 ## Tooltip
 https://api.flutter.dev/flutter/material/Tooltip-class.html
 
+Tooltipクラスは、ボタンや他のユーザーインターフェイスアクションの機能を説明するテキストラベルを提供します。
+
+Tooltipクラスは以下のようなパラメーターを持ちます
+
+- message: ツールチップに表示するテキスト。
+- height: ツールチップの高さ。
+- padding: ツールチップの子要素の内側の余白。
+- margin: ツールチップを囲む空白の量。
+- preferBelow: ツールチップがウィジェットの下に表示されるかどうか。
+- decoration: ツールチップの形状と背景色。
+- textStyle: ツールチップのメッセージのスタイル。
+- waitDuration: ツールチップが表示されるまでの待機時間。
+- showDuration: ツールチップが表示される時間。
+
 ```dart
+Tooltip(
+  message: 'Your Tooltip Message',
+  decoration: BoxDecoration(
+    gradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+    borderRadius: BorderRadius.circular(10),
+  ),
+  height: 40,
+  preferBelow: false,
+  textStyle: TextStyle(fontSize: 15),
+  showDuration: Duration(seconds: 2),
+  waitDuration: Duration(milliseconds: 500),
+)
 ```
 ## Card
 https://api.flutter.dev/flutter/material/Card-class.html
