@@ -1,11 +1,6 @@
 ---
 title: "環境構築"
 ---
-
-:::message alert
-こちらの資料は株式会社VISIONARY JAPANの社員に限定で公開しています。zennで公開するまでは第三者への提供を禁じます。
-:::
-
 # 1. IDEの準備をする
 Flutterで開発をするためにIDEを用意しましょう！
 今回インストールするIDEは全部で3つとなります。
@@ -78,13 +73,14 @@ Windowsはchocoを使ってinstallしましょう
 choco install fvm
 ```
 
-### 動作確認
+### 2-3. 共通
+#### 動作確認
 以下のコマンドでインストールできているか確認しましょう
 ```
 $ fvm --version
 ```
 
-### flutterをinstall
+#### flutterをinstall
 まず、以下のコマンドでどのバージョンがインストールできるか確認できます。
 ```
 fvm releases
@@ -123,7 +119,7 @@ fvm install 3.10.6
 fvm use 3.10.6
 ```
 
-### 動作確認
+#### 動作確認
 Flutterが無事インストールできたか確認してみましょう
 fvmでFlutterを管理する場合、`fvm flutter`でFlutterコマンドが利用できます。
 ```
@@ -237,22 +233,27 @@ Doctor summary (to see all details, run flutter doctor -v):
 
 ![](https://storage.googleapis.com/zenn-user-upload/9314f41f983f-20230808.png =300x)
 
-# 4. Flutterコマンド一覧
+# 4. Flutter/Dartコマンド一覧
 Flutterには、便利なコマンドがいくつかあります。
 代表的なコマンドを紹介するため、困った際は活用してみてください。
+### Flutterコマンド
 
-`flutter doctor`: Flutter環境のステータスを表示します。Flutterをインストールして実行する際に、このコマンドを実行してエラーがないか確認してください。
-`flutter create <project_name>`: 新しいFlutterプロジェクトを作成します。プロジェクト名を指定し、このコマンドを実行すると、新しいFlutterプロジェクトが作成されます。
-`flutter run`: 現在のFlutterプロジェクトを実行します。このコマンドを実行すると、現在のFlutterプロジェクトがデバイスまたはエミュレーターで実行されます。
-`flutter build <platform>`: 現在のFlutterプロジェクトを指定されたプラットフォームにビルドします。プラットフォームには、Android、iOS、Web、Desktopなどがあります。
-`flutter test`: 現在のFlutterプロジェクトのテストコードを実行します。テストコードを実行することで、プロジェクトの品質を保証することができます。
-`flutter analyze`: 現在のFlutterプロジェクトのコード品質を分析します。コード品質を分析することで、プロジェクトのパフォーマンスを向上させることができます。
-`flutter format`: 現在のFlutterプロジェクトのコードフォーマットを整えます。コードフォーマットを整えることで、プロジェクトのコードが読みやすくなり、メンテナンスしやすくなります。
-`flutter clean`: 現在のFlutterプロジェクトのビルド出力を削除します。ビルド出力を削除することで、プロジェクトのビルド速度を向上させることができます。
-`flutter help`: Flutterコマンドのヘルプを表示します。コマンドラインからflutter helpと入力すると、Flutterコマンドのヘルプを表示できます。
-`flutter pub get`: Flutterプロジェクトに依存しているすべてのパッケージをダウンロードします。
-`flutter pub outdated`: Flutterプロジェクトに依存しているパッケージのアップデートをチェックします。
-`flutter pub upgrade`: Flutterプロジェクトに依存しているすべてのパッケージを最新バージョンにアップデートします。
-`flutter pub add <package_name>`: Flutterプロジェクトにパッケージを追加します。
-`flutter pub remove <package_name>`: Flutterプロジェクトからパッケージを削除します。
-`flutter pub list`: Flutterプロジェクトに依存しているすべてのパッケージを一覧表示します。
+- `flutter doctor`: Flutter環境のステータスを表示します。Flutterをインストールして実行する際に、このコマンドを実行してエラーがないか確認してください。
+- `flutter create <project_name>`: 新しいFlutterプロジェクトを作成します。プロジェクト名を指定し、このコマンドを実行すると、新しいFlutterプロジェクトが作成されます。
+- `flutter run`: 現在のFlutterプロジェクトを実行します。このコマンドを実行すると、現在のFlutterプロジェクトがデバイスまたはエミュレーターで実行されます。
+- `flutter build <platform>`: 現在のFlutterプロジェクトを指定されたプラットフォームにビルドします。プラットフォームには、Android、iOS、Web、Desktopなどがあります。
+- `flutter test`: 現在のFlutterプロジェクトのテストコードを実行します。テストコードを実行することで、プロジェクトの品質を保証することができます。
+- `flutter analyze`: 現在のFlutterプロジェクトのコード品質を分析します。コード品質を分析することで、プロジェクトのパフォーマンスを向上させることができます。
+- `flutter format`: 現在のFlutterプロジェクトのコードフォーマットを整えます。コードフォーマットを整えることで、プロジェクトのコードが読みやすくなり、メンテナンスしやすくなります。
+- `flutter clean`: 現在のFlutterプロジェクトのビルド出力を削除します。ビルド出力を削除することで、プロジェクトのビルド速度を向上させることができます。
+- `flutter help`: Flutterコマンドのヘルプを表示します。コマンドラインからflutter helpと入力すると、Flutterコマンドのヘルプを表示できます。
+- `flutter pub get`: Flutterプロジェクトに依存しているすべてのパッケージをダウンロードします。
+- `flutter pub outdated`: Flutterプロジェクトに依存しているパッケージのアップデートをチェックします。
+- `flutter pub upgrade`: Flutterプロジェクトに依存しているすべてのパッケージを最新バージョンにアップデートします。
+- `flutter pub add <package_name>`: Flutterプロジェクトにパッケージを追加します。
+- `flutter pub remove <package_name>`: Flutterプロジェクトからパッケージを削除します。
+- `flutter pub list`: Flutterプロジェクトに依存しているすべてのパッケージを一覧表示します。
+
+### Dartコマンド
+- `dart format`: コードフォーマットを整えてくれます。最新のFlutterバージョンでは`flutter format`よりこちらが推奨されます
+- `dart fix --apply`: ちょっとしたコード修正・整形を一括でやってくれます
