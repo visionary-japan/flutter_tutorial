@@ -1274,7 +1274,7 @@ class _HomePageState extends State<HomePage> {
 
 ![](https://storage.googleapis.com/zenn-user-upload/486a75af2e53-20230810.png)
 
-`ElebatedButton`にフォーカスして実行すれば`Swap with parent`、`SizedBox`にフォーカスして実行すれば`Swap with child`と出るので選択すれば`SizedBox`と`ElevatedButton`の親子関係が入れ替わります。
+`ElevatedButton`にフォーカスして実行すれば`Swap with parent`、`SizedBox`にフォーカスして実行すれば`Swap with child`と出るので選択すれば`SizedBox`と`ElevatedButton`の親子関係が入れ替わります。
 
 また、すべてのウィジェットが候補として出てくるわけではありません。候補がない場合は、一番上に出てくる`Wrap with widget...`を選択してからウィジェット名を手動で記載すればラップ可能です。
 
