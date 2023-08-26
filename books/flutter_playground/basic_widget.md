@@ -471,6 +471,8 @@ https://api.flutter.dev/flutter/material/ListTile-class.html
 
 ListTileは、テキストと先頭または末尾のアイコンを含む固定の高さの行を表します。ListTileは、アイコンや他のウィジェット（チェックボックスなど）でフランクされた1〜3行のテキストを含むことができます。タイルのアイコン（または他のウィジェット）は、leadingおよびtrailingパラメータで定義されます。テキストの最初の行はオプションではなく、titleで指定されます。オプションのsubtitleの値は、追加のテキスト行のスペースを占有するか、isThreeLineがtrueの場合は2行を占有します。denseがtrueの場合、このタイルの全体の高さと、タイトルとサブタイトルウィジェットをラップするDefaultTextStylesのサイズが縮小されます。
 
+![](https://storage.googleapis.com/zenn-user-upload/4943cee4f3df-20230827.png)
+
 ListTileは以下のパラメーターを持ちます
 
 - leading: タイトルの前に表示するウィジェット。
@@ -1115,45 +1117,69 @@ https://api.flutter.dev/flutter/widgets/Align-class.html
 ```
 
 ## Expanded
+https://api.flutter.dev/flutter/widgets/Expanded-class.html
+
 ```dart
 ```
-## Positioned
-```dart
-```
+
 ## AspectRatio
+https://api.flutter.dev/flutter/widgets/AspectRatio-class.html
+
 ```dart
 ```
 ## InheritedWidget
+https://api.flutter.dev/flutter/widgets/InheritedWidget-class.html
+
 ```dart
 ```
 ## CustomScrollView
+https://api.flutter.dev/flutter/widgets/CustomScrollView-class.html
+
 ```dart
 ```
 ## SliverAppBar
+https://api.flutter.dev/flutter/material/SliverAppBar-class.html
+
 ```dart
 ```
 ## SliverList
+https://api.flutter.dev/flutter/widgets/SliverList-class.html
+
 ```dart
 ```
 ## SliverGrid
+https://api.flutter.dev/flutter/widgets/SliverGrid-class.html
+
 ```dart
 ```
 ## SliverFixedExtentList
+https://api.flutter.dev/flutter/widgets/SliverFixedExtentList-class.html
+
 ```dart
 ```
 ## SliverToBoxAdapter
+https://api.flutter.dev/flutter/widgets/SliverToBoxAdapter-class.html
+
 ```dart
 ```
 ## SliverPadding
+https://api.flutter.dev/flutter/widgets/SliverPadding-class.html
+
 ```dart
 ```
 ## SliverFillViewport
+https://api.flutter.dev/flutter/widgets/SliverFillViewport-class.html
+
 ```dart
 ```
 ## SliverFillRemaining
+https://api.flutter.dev/flutter/widgets/SliverFillRemaining-class.html
+
 ```dart
 ```
 ## SliverAnimatedList
+https://api.flutter.dev/flutter/widgets/SliverAnimatedList-class.html
+
 ```dart
 ```
 
@@ -1274,7 +1300,7 @@ class _HomePageState extends State<HomePage> {
 
 ![](https://storage.googleapis.com/zenn-user-upload/486a75af2e53-20230810.png)
 
-`ElevatedButton`にフォーカスして実行すれば`Swap with parent`、`SizedBox`にフォーカスして実行すれば`Swap with child`と出るので選択すれば`SizedBox`と`ElevatedButton`の親子関係が入れ替わります。
+`ElebatedButton`にフォーカスして実行すれば`Swap with parent`、`SizedBox`にフォーカスして実行すれば`Swap with child`と出るので選択すれば`SizedBox`と`ElevatedButton`の親子関係が入れ替わります。
 
 また、すべてのウィジェットが候補として出てくるわけではありません。候補がない場合は、一番上に出てくる`Wrap with widget...`を選択してからウィジェット名を手動で記載すればラップ可能です。
 

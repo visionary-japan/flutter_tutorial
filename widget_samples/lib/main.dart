@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'widgets/list_tile.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -12,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Widgets Sample',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 42, 42, 247)),
         useMaterial3: true,
       ),
       home: const MyHomePage(),
@@ -44,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         child: CustomScrollView(
           slivers: [
-            // _NavigatorButton(),
+            _NavigatorButton(label: 'ListTile', page: ListTileSample()),
           ],
         ),
       ),
@@ -69,6 +72,10 @@ class _NavigatorButton extends StatelessWidget {
         width: MediaQuery.sizeOf(context).width,
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.symmetric(vertical: 6),
+        decoration: BoxDecoration(
+          color: Colors.black87,
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: InkWell(
           onTap: () {
             Navigator.push(
@@ -81,7 +88,12 @@ class _NavigatorButton extends StatelessWidget {
           child: Center(
             child: Text(
               label,
-              style: Theme.of(context).textTheme.headlineSmall,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w400,
+                letterSpacing: 1.5,
+              ),
             ),
           ),
         ),

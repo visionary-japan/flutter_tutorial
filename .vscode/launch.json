@@ -6,7 +6,7 @@
             "cwd": "widget_samples",
             "request": "launch",
             "type": "dart",
-            "program": "widget_samples/lib/main.dart"
+            "program": "../widget_samples/lib/main.dart"
         },
         {
             "name": "widget_samples (profile mode)",
@@ -14,7 +14,7 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
-            "program": "widget_samples/lib/main.dart"
+            "program": "../widget_samples/lib/main.dart"
         },
         {
             "name": "widget_samples (release mode)",
@@ -22,7 +22,7 @@
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",
-            "program": "widget_samples/lib/main.dart"
+            "program": "../widget_samples/lib/main.dart"
         }
     ]
 }
