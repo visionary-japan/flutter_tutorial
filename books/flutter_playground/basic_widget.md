@@ -471,7 +471,7 @@ https://api.flutter.dev/flutter/material/ListTile-class.html
 
 ListTileは、テキストと先頭または末尾のアイコンを含む固定の高さの行を表します。ListTileは、アイコンや他のウィジェット（チェックボックスなど）でフランクされた1〜3行のテキストを含むことができます。タイルのアイコン（または他のウィジェット）は、leadingおよびtrailingパラメータで定義されます。テキストの最初の行はオプションではなく、titleで指定されます。オプションのsubtitleの値は、追加のテキスト行のスペースを占有するか、isThreeLineがtrueの場合は2行を占有します。denseがtrueの場合、このタイルの全体の高さと、タイトルとサブタイトルウィジェットをラップするDefaultTextStylesのサイズが縮小されます。
 
-![](https://storage.googleapis.com/zenn-user-upload/4943cee4f3df-20230827.png)
+![](https://storage.googleapis.com/zenn-user-upload/4943cee4f3df-20230827.png =250x)
 
 ListTileは以下のパラメーターを持ちます
 
