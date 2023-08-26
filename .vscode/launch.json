@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "widget_samples",
+            "cwd": "widget_samples",
+            "request": "launch",
+            "type": "dart",
+            "program": "widget_samples/lib/main.dart"
+        },
+        {
+            "name": "widget_samples (profile mode)",
+            "cwd": "widget_samples",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile",
+            "program": "widget_samples/lib/main.dart"
+        },
+        {
+            "name": "widget_samples (release mode)",
+            "cwd": "widget_samples",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "widget_samples/lib/main.dart"
+        }
+    ]
+}
