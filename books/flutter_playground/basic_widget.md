@@ -1033,7 +1033,7 @@ https://api.flutter.dev/flutter/material/Tooltip-class.html
 
 Tooltipクラスは、ボタンや他のユーザーインターフェイスアクションの機能を説明するテキストラベルを提供します。
 
-![](https://storage.googleapis.com/zenn-user-upload/fc1493d668a9-20230827.png　=250x)
+![](https://storage.googleapis.com/zenn-user-upload/fd5d6525f3e9-20230827.png =250x)
 
 Tooltipクラスは以下のようなパラメーターを持ちます
 
