@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:widget_samples/widgets/bottom_navigation_bar.dart';
+import 'package:widget_samples/widgets/drawer.dart';
+import 'package:widget_samples/widgets/tooltip.dart';
 
+import 'widgets/alert_dialog.dart';
 import 'widgets/list_tile.dart';
+import 'widgets/tab_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -48,6 +53,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: CustomScrollView(
           slivers: [
             _NavigatorButton(label: 'ListTile', page: ListTileSample()),
+            _NavigatorButton(label: 'AlertDialog', page: AlertDialogSample()),
+            _NavigatorButton(
+                label: 'Bottom Navigation Bar',
+                page: BottomNavigationBarSample()),
+            _NavigatorButton(label: 'TabBar', page: TabBarSample()),
+            _NavigatorButton(label: 'Drawer', page: DrawerSample()),
+            _NavigatorButton(label: 'Tooltip', page: ToolTipSample()),
           ],
         ),
       ),

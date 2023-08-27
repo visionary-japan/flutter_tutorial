@@ -152,7 +152,8 @@ https://api.flutter.dev/flutter/material/Scaffold-class.html
 `Scaffold`ウィジェットは、以下のようなパラメーターが指定できます
 - appBar: このプロパティに AppBar ウィジェットを指定することで、ページの上部にアプリバーを追加します。
 - body: 画面の主要部分に配置するウィジェット。
-- drawer: ドロワーメニューとして表示されるウィジェット。
+- drawer: ドロワーメニューとして表示されるウィジェット。（左から登場）
+- endDrawer: ドロワーメニューを右から出せます
 - floatingActionButton: 画面上に浮かぶアクションボタン。
 - bottomNavigationBar: 画面の下部に配置するナビゲーションバー。
 - backgroundColor: 背景色の設定。
@@ -809,6 +810,8 @@ https://api.flutter.dev/flutter/material/AlertDialog-class.html
 
 AlertDialogウィジェットは、ユーザーに確認メッセージを表示するためのウィジェットです。ユーザーに確認を求めたり、警告メッセージを表示したりするために使用できます。
 
+![](https://storage.googleapis.com/zenn-user-upload/a17472a2f5f9-20230827.png =250x)
+
 AlertDialogウィジェットには以下のパラメーターが指定できます。
 
 - title: ダイアログのタイトル。
@@ -823,14 +826,14 @@ showDialog(
       title: Text('This is an alert dialog'),
       content: Text('This is the content of the alert dialog.'),
       actions: <Widget>[
-        FlatButton(
+        OutlinedButton(
           child: Text('OK'),
           onPressed: () {
             // ボタンが押されたときに実行される処理
             Navigator.of(context).pop();
           },
         ),
-        FlatButton(
+        OutlinedButton(
           child: Text('Cancel'),
           onPressed: () {
             // ボタンが押されたときに実行される処理
@@ -847,6 +850,8 @@ https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html
 
 画面下部にナビゲーションバーを作成するためのウィジェットです。通常、3〜5のボタンを配置するようになります。
 原則、画面遷移をしても変化しないバーになります。
+
+![](https://storage.googleapis.com/zenn-user-upload/2932b328e406-20230827.png =250x)
 
 `BottomNavigationBar`は以下のパラメーターを持ちます
 - items: ナビゲーションバー内のアイテムを定義します。これらのアイテムは、テキストラベル、アイコン、またはその両方で構成されることがあります。
@@ -885,7 +890,6 @@ BottomNavigationBar(
   currentIndex: 0,
   elevation: 8.0,
   type: BottomNavigationBarType.fixed,
-  fixedColor: Colors.blue,
   backgroundColor: Colors.white,
   iconSize: 24.0,
   selectedItemColor: Colors.red,
@@ -904,10 +908,12 @@ BottomNavigationBar(
   useLegacyColorScheme: true,
 ),
 ```
-## TabBar
+## TabBar / DefaultTabController
 https://api.flutter.dev/flutter/material/TabBar-class.html
 
 TabBarウィジェットは、Material Designの主要なタブバーを作成するために使用されます。主要なタブは、上部アプリバーの下のコンテンツペインの上部に配置され、主要なコンテンツの目的地を表示します。
+
+![](https://storage.googleapis.com/zenn-user-upload/bd9845e16b12-20230827.png =250x)
 
 - tabs: タブのリスト。通常、2つ以上のTabウィジェットが含まれます。
 - controller: タブの選択とアニメーションの状態を制御します。
@@ -919,6 +925,8 @@ TabBarウィジェットは、Material Designの主要なタブバーを作成�
 - unselectedLabelColor: 選択されていないタブラベルの色。
 - mouseCursor: 個々のタブウィジェット上でマウスポインタが入るかホバーするときのカーソル。
 - onTap: タブバーがタップされたときに呼び出されるオプションのコールバック。
+
+#### 単純なTab設定
 
 ```dart
 TabBar(
@@ -937,10 +945,38 @@ TabBar(
 )
 ```
 
+#### DefaultTabControllerを用いた簡易的なサンプル
+```Dart
+DefaultTabController(
+  length: 3, // タブの数
+  child: Scaffold(
+    appBar: AppBar(
+      title: const Text('TabBar Sample'),
+      bottom: const TabBar(
+        tabs: [
+          Tab(icon: Icon(Icons.home), text: 'Home'),
+          Tab(icon: Icon(Icons.business), text: 'Business'),
+          Tab(icon: Icon(Icons.school), text: 'School'),
+        ],
+      ),
+    ),
+    body: const TabBarView(
+      children: [
+        Center(child: Text('Home Tab')),
+        Center(child: Text('Business Tab')),
+        Center(child: Text('School Tab')),
+      ],
+    ),
+  ),
+);
+```
+
 ## Drawer
 https://api.flutter.dev/flutter/material/Drawer-class.html
 
 Drawerウィジェットは、FlutterのMaterial Designパネルで、Scaffoldの端から水平にスライドしてアプリケーション内のナビゲーションリンクを表示します。
+
+![](https://storage.googleapis.com/zenn-user-upload/2318ce30471f-20230827.png =250x)
 
 - backgroundColor: Drawerの内容を保持するマテリアルの色。
 - elevation: Drawerを親に対して配置するz座標。
@@ -958,7 +994,8 @@ Scaffold(
  appBar: AppBar(
    title: const Text('Drawer Demo'),
  ),
- drawer: Drawer(
+ // drawerは左から登場し、endDrawerは右から登場するものです
+ endDrawer: Drawer(
    child: ListView(
      padding: EdgeInsets.zero,
      children: const <Widget>[
@@ -996,6 +1033,8 @@ https://api.flutter.dev/flutter/material/Tooltip-class.html
 
 Tooltipクラスは、ボタンや他のユーザーインターフェイスアクションの機能を説明するテキストラベルを提供します。
 
+![](https://storage.googleapis.com/zenn-user-upload/fc1493d668a9-20230827.png　=250x)
+
 Tooltipクラスは以下のようなパラメーターを持ちます
 
 - message: ツールチップに表示するテキスト。
@@ -1011,16 +1050,25 @@ Tooltipクラスは以下のようなパラメーターを持ちます
 ```dart
 Tooltip(
   message: 'Your Tooltip Message',
+  padding: const EdgeInsets.all(10),
+  margin: const EdgeInsets.only(bottom: 10),
   decoration: BoxDecoration(
-    gradient: LinearGradient(colors: [Colors.red, Colors.blue]),
+    gradient: const LinearGradient(colors: [
+      Color.fromARGB(255, 251, 132, 34),
+      Color.fromARGB(255, 236, 33, 255)
+    ]),
     borderRadius: BorderRadius.circular(10),
   ),
   height: 40,
   preferBelow: false,
-  textStyle: TextStyle(fontSize: 15),
-  showDuration: Duration(seconds: 2),
-  waitDuration: Duration(milliseconds: 500),
-)
+  textStyle: const TextStyle(fontSize: 15, color: Colors.white),
+  showDuration: const Duration(seconds: 2),
+  waitDuration: const Duration(milliseconds: 500),
+  child: const Icon(
+    Icons.star_border_purple500_outlined,
+    size: 60,
+  ),
+),
 ```
 ## Card
 https://api.flutter.dev/flutter/material/Card-class.html
