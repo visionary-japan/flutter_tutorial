@@ -1119,72 +1119,431 @@ Tooltip(
 ## Card
 https://api.flutter.dev/flutter/material/Card-class.html
 
+Cardは、マテリアルデザインのカードを表現するウィジェットです。わずかに丸みを帯びた角とエレベーションの影が特徴です。カードは、アルバム、地理的な場所、食事、連絡先の詳細など、関連する情報を表現するためのマテリアルのシートとして使用されます。
+
+`Card`ウィジェットは以下のパラメーターを持ちます
+- color: カードの背景色。
+- shadowColor: カードの下の影の色。
+- elevation: このカードを配置するz座標。これはカードの下の影のサイズを制御します。
+- shape: カードのマテリアルの形状。
+- borderOnForeground: 子の前に形状の境界線を描画するかどうか。
+- margin: カードを囲む空白の量。
+- clipBehavior: このオプションに従ってコンテンツがクリップされるかどうか。
+- child: このウィジェットの下にあるウィジェット。
+- semanticContainer: このウィジェットが単一のセマンティックコンテナを表すか、またはfalseの場合、個々のセマンティックノードのコレクション。
+
 ```dart
+Card(
+  color: Colors.blue,
+  shadowColor: Colors.grey,
+  elevation: 5.0,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(15.0),
+  ),
+  borderOnForeground: true,
+  margin: EdgeInsets.all(10.0),
+  child: ListTile(
+    leading: Icon(Icons.album),
+    title: Text('Album Title'),
+    subtitle: Text('Description of the album.'),
+  ),
+)
 ```
 ## DataTable
 https://api.flutter.dev/flutter/material/DataTable-class.html
 
+DataTableは、行と列の形式でデータを表示するためのMaterial Designのウィジェットです。各行はDataRowで、各列はDataColumnで表されます。データテーブルは、ユーザーが情報を一覧で確認しやすくするためのものです。
+
+DataTableクラスは以下のようなパラメーターを持ちます
+
+- columns: テーブルの列を定義するDataColumnのリスト。
+- rows: テーブルの行を定義するDataRowのリスト。
+- sortColumnIndex: ソートされる列のインデックス。
+- sortAscending: 列が昇順でソートされる場合はtrue、降順の場合はfalse。
+- onSelectAll: すべての行の選択状態を切り替えるためのコールバック。
+- dataRowHeight: 各行の高さ。
+- dataTextStyle: テーブルのテキストデータのスタイル。
+- headingRowHeight: ヘッダー行の高さ。
+- headingTextStyle: ヘッダーのテキストスタイル。
+- horizontalMargin: 各セルの水平方向のマージン。
+- columnSpacing: 列間のスペース。
+- showCheckboxColumn: 最初の列にチェックボックスを表示するかどうか。
+- dividerThickness: 行間の分割線の厚さ。
+
 ```dart
+DataTable(
+  columns: const [
+    DataColumn(label: Text('Name')),
+    DataColumn(label: Text('Age')),
+    DataColumn(label: Text('Role')),
+  ],
+  rows: const [
+    DataRow(cells: [
+      DataCell(Text('Alice')),
+      DataCell(Text('24')),
+      DataCell(Text('Engineer')),
+    ]),
+    DataRow(cells: [
+      DataCell(Text('Bob')),
+      DataCell(Text('27')),
+      DataCell(Text('Designer')),
+    ]),
+    // ... 他の行
+  ],
+)
 ```
 ## Image
 https://api.flutter.dev/flutter/widgets/Image-class.html
 
+FlutterのMaterialウィジェットであるImageは、画像を表示するウィジェットです。インターネット、ローカルファイル、アセットなど、さまざまなソースから画像を表示できます。
+
+Imageウィジェットは以下のパラメーターを持ちます。
+
+- image: 画像のソース。URL、ファイルパス、アセット名のいずれかを指定できます。
+- width: 画像の幅。
+- height: 画像の高さ。
+- fit: 画像をウィジェットのサイズに合わせてどのようにリサイズするか。
+- alignment: 画像をウィジェット内でどのように配置するか。
+- repeat: 画像を繰り返し表示するかどうか。
+- color: 画像が見つからなかった場合に使用する色。
+- cache: 画像をキャッシュするかどうか。
+- semanticLabel: 画像の意味的なラベル。
+
 ```dart
+Image(
+  image: NetworkImage('https://example.com/image.png'),
+  width: 100,
+  height: 100,
+)
 ```
+
+
 ## Icon
 https://api.flutter.dev/flutter/widgets/Icon-class.html
 
-```dart
-```
-## Chip
-https://api.flutter.dev/flutter/material/Chip-class.html
+Iconウィジェットは、Material Designのアイコンを表示するウィジェットです。Material Designのライブラリから、またはカスタムアイコンからアイコンを表示できます。
+
+- icon: 表示するアイコン。これは、Material Designライブラリからの名前、またはカスタムアイコンのいずれかです。
+- size: アイコンのサイズ。
+- color: アイコンの色。
+- semanticLabel: アイコンの意味的なラベル。
 
 ```dart
+Icon(
+  icon: Icons.home,
+  size: 20.0,
+  color: Colors.blue,
+)
+```
+
+## Chip
+
+https://api.flutter.dev/flutter/material/Chip-class.html
+
+Chipウィジェットは、Material Designのチップを表示するウィジェットです。チップは、テキスト、アイコン、または両方を含む小さな矩形の領域です。チップは、オプション、タグ、またはその他の関連する情報のグループを表すために使用されます。
+
+Chipウィジェットには、以下のパラメーターがあります。
+
+avatar: チップの左側に表示するアバター。
+backgroundColor: チップの背景色。
+label: チップのラベル。
+labelStyle: チップのラベルのスタイル。
+deleteIcon: チップを削除するアイコン。
+deleteIconColor: チップを削除するアイコンの色。
+shape: チップの形状。
+padding: チップの内側の余白。
+margin: チップの外側の余白。
+onDeleted: チップが削除されたときに呼び出されるコールバック。
+
+```dart
+Chip(
+  avatar: Icon(Icons.person),
+  label: Text('John Doe'),
+  backgroundColor: Colors.blue,
+)
 ```
 ## Divider
 https://api.flutter.dev/flutter/material/Divider-class.html
 
+Dividerウィジェットは、Material Designの水平または垂直の線を表示するウィジェットです。これは、リストやウィジェットのグループを区切るために使用されます。
+
+Dividerウィジェットには、以下のパラメーターがあります。
+
+- height: 線の高さ。
+- width: 線の幅。
+- color: 線の色。
+- thickness: 線の太さ。
+- indent: 線の左端から余白を追加します。
+- endIndent: 線の右端から余白を追加します。
+- orientation: 線の方向。
+- context: ウィジェットが配置されているコンテキスト。
+
 ```dart
+Divider(
+  height: 10.0,
+  color: Colors.black,
+)
 ```
-## ProgressIndicator/CircularProgressIndicator
+## ProgressIndicator
 https://api.flutter.dev/flutter/material/ProgressIndicator-class.html
-https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html
+
+ProgressIndicatorは、Material Designの円形の進行状況インジケーターを表示するウィジェットです。これは、タスクが実行中であることをユーザーに示すために使用されます。
+
+ProgressIndicatorウィジェットには、以下のパラメーターがあります。
+
+- value: 進行状況の値。0から1の範囲で指定します。
+- valueColor: 進行状況の色。
+- backgroundColor: 背景色。
+- strokeWidth: 線の太さ。
+- semanticLabel: インジケーターの意味的なラベル。
+
 ```dart
+ProgressIndicator(
+  value: 0.5,
+  valueColor: Colors.red,
+  backgroundColor: Colors.grey,
+  strokeWidth: 4.0,
+)
 ```
+
+## CircularProgressIndicator
+https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html
+
+CircularProgressIndicatorは、ProgressIndicatorの一種で、円形の進行状況インジケーターを表示します。これは、ProgressIndicatorよりも丸みを帯びた外観をしています。
+
+パラメーター
+
+CircularProgressIndicatorウィジェットには、ProgressIndicatorウィジェットと同じパラメーターがあります。
+
+```dart
+CircularProgressIndicator(
+  value: 0.5,
+  valueColor: Colors.red,
+  backgroundColor: Colors.grey,
+  strokeWidth: 4.0,
+)
+```
+
+
 ## TextFormField
 https://api.flutter.dev/flutter/material/TextFormField-class.html
 https://api.flutter.dev/flutter/material/TextField-class.html
 
+TextFormFieldクラスは、Material Designのテキスト入力ウィジェットです。ユーザーの入力を収集するために使用されます。TextFieldクラスのサブクラスであり、検証や装飾などの追加機能を備えています。
+似たウィジェットにTextFieldウィジェットがありますが、扱いやすさを考慮してTextFormFieldウィジェットを用いることを推奨します。
+
+TextFormFieldクラスのパラメーターは、以下のとおりです。
+- controller: テキストフィールドのテキストを管理するTextEditingController。
+- decoration: テキストフィールドの装飾を指定するためのInputDecorationオブジェクト。
+- validator: テキストフィールドのテキストを検証する関数。
+- onSaved: テキストフィールドのテキストが保存されたときに呼び出される関数。
+
 ```dart
+TextFormField(
+  controller: myController,
+  decoration: InputDecoration(
+    labelText: 'ユーザー名',
+    hintText: 'ユーザー名を入力してください',
+  ),
+  validator: (value) {
+    if (value.isEmpty) {
+      return 'ユーザー名を入力してください。';
+    }
+    return null;
+  },
+  onSaved: (value) {
+    // ユーザー名をユーザープロファイルに保存します。
+  },
+)
 ```
+
+
 ## SelectableText
 https://api.flutter.dev/flutter/material/SelectableText-class.html
 
+SelectableTextクラスは、テキストを表示するウィジェットです。通常のTextクラスと異なり、テキストを自由に選択することができます。
+
+SelectableTextクラスのパラメーターは、以下のとおりです。
+
+- data: 表示するテキスト。
+- style: テキストのスタイル。
+- textAlign: テキストの水平方向の配置。
+- softWrap: テキストの折り返し。
+- overflow: テキストのオーバーフロー。
+- textScaleFactor: テキストのスケールファクター。
+- maxLines: テキストの最大行数。
+- selectionColor: 選択されたテキストの色。
+
+
 ```dart
+SelectableText(
+  data: 'This is selectable text.',
+  style: TextStyle(fontSize: 20.0),
+  textAlign: TextAlign.center,
+  softWrap: true,
+  overflow: TextOverflow.ellipsis,
+  textScaleFactor: 1.5,
+  maxLines: 2,
+  selectionColor: Colors.red,
+)
 ```
+
 ## RichText
 https://api.flutter.dev/flutter/widgets/RichText-class.html
 
+RichTextクラスは、テキストを表示するウィジェットです。通常のTextクラスと異なり、テキストのスタイルや色などを、任意の位置で指定することができます。
+
+RichTextクラスのパラメーターは、以下のとおりです。
+
+- text: 表示するテキスト。
+- textAlign: テキストの水平方向の配置。
+- softWrap: テキストの折り返し。
+- overflow: テキストのオーバーフロー。
+- textScaleFactor: テキストのスケールファクター。
+- maxLines: テキストの最大行数。
+- children: テキストのスタイルや色などを指定する、TextSpanオブジェクトのリスト。
+
 ```dart
+RichText(
+  text: 'This is a RichText example.',
+  textAlign: TextAlign.center,
+  softWrap: true,
+  overflow: TextOverflow.ellipsis,
+  textScaleFactor: 1.5,
+  maxLines: 2,
+  children: [
+    TextSpan(
+      text: 'This is ',
+      style: TextStyle(color: Colors.blue),
+    ),
+    TextSpan(
+      text: 'RichText',
+      style: TextStyle(color: Colors.red),
+    ),
+    TextSpan(
+      text: ' example.',
+      style: TextStyle(color: Colors.blue),
+    ),
+  ],
+)
 ```
+
 ## InkWell
 https://api.flutter.dev/flutter/material/InkWell-class.html
 
+InkWellクラスは、タップや長押しなどのイベントを検出できるウィジェットです。タップや長押しなどのイベントが発生すると、インクを広げるアニメーションを表示します。
+
+InkWellクラスのパラメーターは、以下のとおりです。
+
+- child: タップや長押しなどのイベントが発生したときに表示するウィジェット。
+- onTap: タップイベントが発生したときに呼び出される関数。
+- onLongPress: 長押しイベントが発生したときに呼び出される関数。
+- splashColor: インクアニメーションの色。
+- splashRadius: インクアニメーションの半径。
+- borderRadius: インクアニメーションの角の丸み。
+
 ```dart
+InkWell(
+  child: Text('This is an InkWell'),
+  onTap: () {
+    // タップイベントが発生したときに実行される処理
+    print('InkWell was tapped.');
+  },
+)
 ```
 ## GestureDetector
 https://api.flutter.dev/flutter/widgets/GestureDetector-class.html
 
+GestureDetectorクラスは、タップやドラッグ、ピンチなどのジェスチャを検出できるウィジェットです。ジェスチャが発生したときに、指定した関数を呼び出します。
+
+GestureDetectorクラスのパラメーターは、以下のとおりです。
+
+- child: ジェスチャが発生したときに表示するウィジェット。
+- onTap: タップイベントが発生したときに呼び出される関数。
+- onTapDown: タップイベントが開始したときに呼び出される関数。
+- onTapUp: タップイベントが終了したときに呼び出される関数。
+- onTapCancel: タップイベントがキャンセルされたときに呼び出される関数。
+- onDoubleTap: ダブルタップイベントが発生したときに呼び出される関数。
+- onLongPress: 長押しイベントが発生したときに呼び出される関数。
+- onPanStart: パンイベントが開始したときに呼び出される関数。
+- onPanUpdate: パンイベントが更新されたときに呼び出される関数。
+- onPanEnd: パンイベントが終了したときに呼び出される関数。
+- onPanCancel: パンイベントがキャンセルされたときに呼び出される関数。
+- onScaleStart: ピンチイベントが開始したときに呼び出される関数。
+- onScaleUpdate: ピンチイベントが更新されたときに呼び出される関数。
+- onScaleEnd: ピンチイベントが終了したときに呼び出される関数。
+- onScaleCancel: ピンチイベントがキャンセルされたときに呼び出される関数。
+
 ```dart
+GestureDetector(
+  child: Text('This is a GestureDetector'),
+  onTap: () {
+    // タップイベントが発生したときに実行される処理
+    print('GestureDetector was tapped.');
+  },
+)
 ```
 ## FutureBuilder
 https://api.flutter.dev/flutter/widgets/FutureBuilder-class.html
+
+FutureBuilderクラスは、Futureオブジェクトの状態を監視するウィジェットです。Futureオブジェクトの状態が変化すると、ウィジェットを再ビルドします。
+
+FutureBuilderクラスのパラメーターは、以下のとおりです。
+
+- future: 監視するFutureオブジェクト。
+- builder: Futureオブジェクトの状態に応じて、ウィジェットを生成する関数。
+- initialData: Futureオブジェクトが完了する前に、表示するウィジェット。
+- futureBuilderState: Futureオブジェクトの状態を示す値。
+
 ```dart
+FutureBuilder(
+    future: Future.delayed(Duration(seconds: 3)),
+    builder: (context, snapshot) {
+        // snapshot.hasData: Futureオブジェクトが完了しているかどうか。
+        // snapshot.data: Futureオブジェクトの完了値。
+        // snapshot.error: Futureオブジェクトでエラーが発生したかどうか。
+        // snapshot.stackTrace: Futureオブジェクトでエラーが発生した場合のエラースタック。
+
+        if (snapshot.hasData) {
+          return Text(snapshot.data);
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error);
+        } else {
+          return CircularProgressIndicator();
+        }
+    },
+)
 ```
 ## StreamBuilder
 https://api.flutter.dev/flutter/widgets/StreamBuilder-class.html
 
+StreamBuilderクラスは、Streamオブジェクトの状態を監視するウィジェットです。Streamオブジェクトの状態が変化すると、ウィジェットを再ビルドします。
+
+StreamBuilderクラスのパラメーターは、以下のとおりです。
+
+- stream: 監視するStreamオブジェクト。
+- builder: Streamオブジェクトの状態に応じて、ウィジェットを生成する関数。
+- initialData: Streamオブジェクトが完了する前に、表示するウィジェット。
+- streamBuilderState: Streamオブジェクトの状態を示す値。
+
 ```dart
+StreamBuilder(
+    stream: Stream.fromIterable([1, 2, 3, 4, 5]),
+    builder: (context, snapshot) {
+        // snapshot.hasData: Streamオブジェクトにデータが存在するかどうか。
+        // snapshot.data: Streamオブジェクトのデータ。
+        // snapshot.error: Streamオブジェクトでエラーが発生したかどうか。
+        // snapshot.stackTrace: Streamオブジェクトでエラーが発生した場合のエラースタック。
+
+        if (snapshot.hasData) {
+          return Text(snapshot.data.toString());
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error);
+        } else {
+          return CircularProgressIndicator();
+        }
+    },
+)
 ```
 ## AnimatedContainer
 https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html
