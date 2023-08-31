@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:widget_samples/widgets/bottom_navigation_bar.dart';
+import 'package:widget_samples/widgets/card.dart';
+import 'package:widget_samples/widgets/data_table.dart';
 import 'package:widget_samples/widgets/drawer.dart';
+import 'package:widget_samples/widgets/image.dart';
 import 'package:widget_samples/widgets/tooltip.dart';
 
 import 'widgets/alert_dialog.dart';
@@ -60,6 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
             _NavigatorButton(label: 'TabBar', page: TabBarSample()),
             _NavigatorButton(label: 'Drawer', page: DrawerSample()),
             _NavigatorButton(label: 'Tooltip', page: ToolTipSample()),
+            _NavigatorButton(label: 'Card', page: CardSample()),
+            _NavigatorButton(label: 'DataTable', page: DataTableSample()),
+            _NavigatorButton(label: 'Image', page: ImageSample()),
           ],
         ),
       ),
