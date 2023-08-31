@@ -1121,6 +1121,8 @@ https://api.flutter.dev/flutter/material/Card-class.html
 
 Cardは、マテリアルデザインのカードを表現するウィジェットです。わずかに丸みを帯びた角とエレベーションの影が特徴です。カードは、アルバム、地理的な場所、食事、連絡先の詳細など、関連する情報を表現するためのマテリアルのシートとして使用されます。
 
+![](https://storage.googleapis.com/zenn-user-upload/7d8b33262bda-20230831.png =250x)
+
 `Card`ウィジェットは以下のパラメーターを持ちます
 - color: カードの背景色。
 - shadowColor: カードの下の影の色。
@@ -1153,6 +1155,8 @@ Card(
 https://api.flutter.dev/flutter/material/DataTable-class.html
 
 DataTableは、行と列の形式でデータを表示するためのMaterial Designのウィジェットです。各行はDataRowで、各列はDataColumnで表されます。データテーブルは、ユーザーが情報を一覧で確認しやすくするためのものです。
+
+![](https://storage.googleapis.com/zenn-user-upload/48c2f4f8cc9f-20230831.png =250x)
 
 DataTableクラスは以下のようなパラメーターを持ちます
 
@@ -1197,6 +1201,8 @@ https://api.flutter.dev/flutter/widgets/Image-class.html
 
 FlutterのMaterialウィジェットであるImageは、画像を表示するウィジェットです。インターネット、ローカルファイル、アセットなど、さまざまなソースから画像を表示できます。
 
+![](https://storage.googleapis.com/zenn-user-upload/f7cc9e872d87-20230831.png =250x)
+
 Imageウィジェットは以下のパラメーターを持ちます。
 
 - image: 画像のソース。URL、ファイルパス、アセット名のいずれかを指定できます。
@@ -1217,13 +1223,21 @@ Image(
 )
 ```
 
+ちなみに、著作権フリーな画像として以下のサイトがおすすめです
+
+https://picsum.photos/
+
 
 ## Icon
 https://api.flutter.dev/flutter/widgets/Icon-class.html
 
 Iconウィジェットは、Material Designのアイコンを表示するウィジェットです。Material Designのライブラリから、またはカスタムアイコンからアイコンを表示できます。
 
-- icon: 表示するアイコン。これは、Material Designライブラリからの名前、またはカスタムアイコンのいずれかです。
+![](https://storage.googleapis.com/zenn-user-upload/4129e58989d3-20230831.png =250x)
+
+Iconウィジェットは以下のパラメーターを持ちます
+
+- icon（第一引数）: 表示するアイコン。これは、Material Designライブラリからの名前、またはカスタムアイコンのいずれかです。
 - size: アイコンのサイズ。
 - color: アイコンの色。
 - semanticLabel: アイコンの意味的なラベル。
@@ -1236,11 +1250,29 @@ Icon(
 )
 ```
 
+Flutterでデフォルトで使えるアイコンは以下のサイトから探すことができます。
+
+https://fonts.google.com/icons
+
+また、以下のサイトはもう少し種類が豊富なアイコンをダウンロードして使うことができます。
+
+https://www.fluttericon.com/
+
+さらに、アイコンといえばFontAwesomeですね。
+
+https://fontawesome.com/search?m=free&o=r
+
+FontAwesomeを使うには、専用のパッケージを使うことでFontAwesomeのアイコンを一部利用することが可能になります。
+
+https://pub.dev/packages/font_awesome_flutter
+
 ## Chip
 
 https://api.flutter.dev/flutter/material/Chip-class.html
 
 Chipウィジェットは、Material Designのチップを表示するウィジェットです。チップは、テキスト、アイコン、または両方を含む小さな矩形の領域です。チップは、オプション、タグ、またはその他の関連する情報のグループを表すために使用されます。
+
+![](https://storage.googleapis.com/zenn-user-upload/024c7423cf4b-20230831.png =250x)
 
 Chipウィジェットには、以下のパラメーターがあります。
 
@@ -1266,6 +1298,8 @@ Chip(
 https://api.flutter.dev/flutter/material/Divider-class.html
 
 Dividerウィジェットは、Material Designの水平または垂直の線を表示するウィジェットです。これは、リストやウィジェットのグループを区切るために使用されます。
+
+![](https://storage.googleapis.com/zenn-user-upload/c7834bf78fd3-20230831.png =250x)
 
 Dividerウィジェットには、以下のパラメーターがあります。
 
@@ -1548,11 +1582,49 @@ StreamBuilder(
 ## AnimatedContainer
 https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html
 
+AnimatedContainerクラスは、Containerウィジェットのアニメーションバージョンです。Containerウィジェットは、色、サイズ、形状などの属性を変更できますが、AnimatedContainerウィジェットは、これらの属性をアニメーションで変更できます。
+
+AnimatedContainerクラスのパラメーターは、以下のとおりです。
+
+- child: アニメーションが適用されるウィジェット。
+- duration: アニメーションの期間。
+- curve: アニメーションの曲線。
+- alignment: ウィジェットの配置。
+- width: ウィジェットの幅。
+- height: ウィジェットの高さ。
+- color: ウィジェットの色。
+- borderRadius: ウィジェットの角の丸み。
+- decoration: ウィジェットの装飾。
+- transform: ウィジェットの変形。
+
 ```dart
+AnimatedContainer(
+  child: Text('This is an AnimatedContainer'),
+  duration: Duration(seconds: 3),
+  curve: Curves.easeInOut,
+  alignment: Alignment.center,
+  width: 200,
+  height: 100,
+  color: Colors.blue,
+  borderRadius: BorderRadius.circular(10),
+)
 ```
+
 ## Hero
 https://api.flutter.dev/flutter/widgets/Hero-class.html
+
+Heroクラスは、ウィジェットの遷移をアニメーション化するクラスです。Heroウィジェットを使用することで、同じタグを持つウィジェットが遷移するときに、アニメーションで移動したり、拡大したりすることができます。
+
+Heroクラスのパラメーターは、以下のとおりです。
+
+- child: アニメーションされるウィジェット。
+- tag: ウィジェットの識別子。
+
 ```dart
+Hero(
+  tag: 'hero',
+  child: Text('This is a Hero'),
+)
 ```
 ## Transform
 https://api.flutter.dev/flutter/widgets/Transform-class.html
