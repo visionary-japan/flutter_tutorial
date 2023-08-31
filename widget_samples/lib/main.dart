@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:widget_samples/widgets/bottom_navigation_bar.dart';
 import 'package:widget_samples/widgets/card.dart';
+import 'package:widget_samples/widgets/chip.dart';
 import 'package:widget_samples/widgets/data_table.dart';
+import 'package:widget_samples/widgets/divider.dart';
 import 'package:widget_samples/widgets/drawer.dart';
+import 'package:widget_samples/widgets/icon.dart';
 import 'package:widget_samples/widgets/image.dart';
 import 'package:widget_samples/widgets/tooltip.dart';
 
@@ -66,6 +69,14 @@ class _MyHomePageState extends State<MyHomePage> {
             _NavigatorButton(label: 'Card', page: CardSample()),
             _NavigatorButton(label: 'DataTable', page: DataTableSample()),
             _NavigatorButton(label: 'Image', page: ImageSample()),
+            _NavigatorButton(label: 'Icon', page: IconSample()),
+            _NavigatorButton(label: 'Chip', page: ChipSample()),
+            _NavigatorButton(label: 'Divider', page: DividerSample()),
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: 40,
+              ),
+            )
           ],
         ),
       ),

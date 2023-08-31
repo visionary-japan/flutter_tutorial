@@ -7,6 +7,15 @@ class IconSample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseScaffold(title: '', child: Container());
+    return const BaseScaffold(
+      title: 'Icon Sample',
+      child: Center(
+        child: Icon(
+          Icons.home,
+          size: 100,
+          color: Colors.blue,
+        ),
+      ),
+    );
   }
 }
