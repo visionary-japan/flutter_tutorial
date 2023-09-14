@@ -23,6 +23,13 @@
             "type": "dart",
             "flutterMode": "release",
             "program": "../widget_samples/lib/main.dart"
+        },
+        {
+            "name": "weekly_tasks",
+            "cwd": "widget_samples",
+            "request": "launch",
+            "type": "dart",
+            "program": "../widget_samples/tasks/week4/answer.dart"
         }
     ]
 }
