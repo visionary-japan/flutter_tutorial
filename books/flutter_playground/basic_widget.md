@@ -2,6 +2,7 @@
 title: "基本のウィジェット"
 ---
 
+
 :::message alert
 この教材では、Flutterに注力して学習を進めます。そのため、クラスやメソッドなど、文法の基礎的な箇所については省略します
 :::
@@ -439,17 +440,21 @@ https://api.flutter.dev/flutter/widgets/Positioned-class.html
 Stack(
   children: <Widget>[
     Container(
+      width: 200,
+      height: 200,
       color: Colors.red,
     ),
     Positioned(
-      top: 100,
-      left: 100,
+      top: 20,
+      left: 20,
       child: Container(
+        width: 100,
+        height: 100,
         color: Colors.blue,
       ),
     ),
   ],
-)
+),
 ```
 
 ## ListView
@@ -565,10 +570,10 @@ https://api.flutter.dev/flutter/material/ElevatedButton-class.html
 ```dart
 ElevatedButton(
   onPressed: () {},
-  child: Text('Click Me'),
   style: ElevatedButton.styleFrom(
-    primary: Colors.blue, // ボタンの色を青に設定
+    backgroundColor: Colors.blue, // ボタンの色を青に設定
   ),
+  child: const Text('Click Me'),
 );
 ```
 ## FloatingActionButton
@@ -640,22 +645,48 @@ PopupMenuButtonウィジェットには以下のパラメーターが指定で�
 - onSelected: ポップアップメニューの項目が選択されたときに呼び出される関数。
 - child: ポップアップメニューの親ウィジェット。
 ```dart
-PopupMenuButton(
-  items: [
-    PopupMenuItem(
-      value: '項目1',
-      child: Text('項目1'),
-    ),
-    PopupMenuItem(
-      value: '項目2',
-      child: Text('項目2'),
-    ),
-  ],
-  onSelected: (String value) {
-    // ポップアップメニューの項目が選択されたときに実行される処理
+PopupMenuButton<PopupMenuButtonSampleType>(
+  icon: const Icon(Icons.settings),
+  iconSize: 40,
+  position: PopupMenuPosition.under,
+  initialValue: PopupMenuButtonSampleType.one,
+  itemBuilder: (BuildContext context) {
+    return const <PopupMenuEntry<PopupMenuButtonSampleType>>[
+      PopupMenuItem(
+        value: PopupMenuButtonSampleType.one,
+        child: Text('選択肢1'),
+      ),
+      PopupMenuItem(
+        value: PopupMenuButtonSampleType.two,
+        child: Text('選択肢2'),
+      ),
+      PopupMenuItem(
+        value: PopupMenuButtonSampleType.three,
+        child: Text('選択肢3'),
+      ),
+    ];
   },
-);
+  onSelected: (PopupMenuButtonSampleType value) {
+    // ドロップダウンリストの値が変更されたときに実行される処理
+    setState(() {
+      _value = value;
+    });
+    // switchで分岐して処理を実行
+    switch (value) {
+      case PopupMenuButtonSampleType.one:
+        // 選択肢1が選択されたときの処理
+        break;
+      case PopupMenuButtonSampleType.two:
+        // 選択肢2が選択されたときの処理
+        break;
+      case PopupMenuButtonSampleType.three:
+        // 選択肢3が選択されたときの処理
+        break;
+    }
+  },
+),
 ```
+
 ## Checkbox
 https://api.flutter.dev/flutter/material/Checkbox-class.html
 
