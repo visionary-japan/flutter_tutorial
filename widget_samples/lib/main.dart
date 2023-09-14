@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widget_samples/widgets/alert_dialog.dart';
 import 'package:widget_samples/widgets/bottom_navigation_bar.dart';
 import 'package:widget_samples/widgets/card.dart';
 import 'package:widget_samples/widgets/chip.dart';
@@ -6,16 +7,19 @@ import 'package:widget_samples/widgets/column.dart';
 import 'package:widget_samples/widgets/data_table.dart';
 import 'package:widget_samples/widgets/divider.dart';
 import 'package:widget_samples/widgets/drawer.dart';
+import 'package:widget_samples/widgets/drop_down.dart';
+import 'package:widget_samples/widgets/elevated_button.dart';
+import 'package:widget_samples/widgets/floating_action_button.dart';
+import 'package:widget_samples/widgets/grid_view.dart';
 import 'package:widget_samples/widgets/icon.dart';
 import 'package:widget_samples/widgets/image.dart';
+import 'package:widget_samples/widgets/list_tile.dart';
 import 'package:widget_samples/widgets/list_view.dart';
+import 'package:widget_samples/widgets/popup_menu_button.dart';
 import 'package:widget_samples/widgets/row.dart';
 import 'package:widget_samples/widgets/stack_positioned.dart';
+import 'package:widget_samples/widgets/tab_bar.dart';
 import 'package:widget_samples/widgets/tooltip.dart';
-
-import 'widgets/alert_dialog.dart';
-import 'widgets/list_tile.dart';
-import 'widgets/tab_bar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -67,7 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
             _NavigatorButton(
                 label: 'Stack & Positioned', page: StackAndPositionedSample()),
             _NavigatorButton(label: 'ListView', page: ListViewSample()),
+            _NavigatorButton(label: 'GridView', page: GridViewSample()),
             _NavigatorButton(label: 'ListTile', page: ListTileSample()),
+            _NavigatorButton(
+                label: 'ElevatedButton', page: ElevatedButtonSample()),
+            _NavigatorButton(
+                label: 'FloatingActionButton',
+                page: FloatingActionButtonSample()),
+            _NavigatorButton(label: 'DropDown', page: DropDownSample()),
+            _NavigatorButton(
+                label: 'PopupMenuButton', page: PopupMenuButtonSample()),
             _NavigatorButton(label: 'AlertDialog', page: AlertDialogSample()),
             _NavigatorButton(
                 label: 'Bottom Navigation Bar',
