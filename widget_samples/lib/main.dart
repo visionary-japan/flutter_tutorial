@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:widget_samples/widgets/alert_dialog.dart';
 import 'package:widget_samples/widgets/bottom_navigation_bar.dart';
 import 'package:widget_samples/widgets/card.dart';
+import 'package:widget_samples/widgets/check_box.dart';
 import 'package:widget_samples/widgets/chip.dart';
 import 'package:widget_samples/widgets/column.dart';
 import 'package:widget_samples/widgets/data_table.dart';
+import 'package:widget_samples/widgets/date_picker.dart';
 import 'package:widget_samples/widgets/divider.dart';
 import 'package:widget_samples/widgets/drawer.dart';
 import 'package:widget_samples/widgets/drop_down.dart';
@@ -16,9 +19,14 @@ import 'package:widget_samples/widgets/image.dart';
 import 'package:widget_samples/widgets/list_tile.dart';
 import 'package:widget_samples/widgets/list_view.dart';
 import 'package:widget_samples/widgets/popup_menu_button.dart';
+import 'package:widget_samples/widgets/radio_button.dart';
 import 'package:widget_samples/widgets/row.dart';
+import 'package:widget_samples/widgets/slider.dart';
+import 'package:widget_samples/widgets/snack_bar.dart';
 import 'package:widget_samples/widgets/stack_positioned.dart';
+import 'package:widget_samples/widgets/switch.dart';
 import 'package:widget_samples/widgets/tab_bar.dart';
+import 'package:widget_samples/widgets/time_picker.dart';
 import 'package:widget_samples/widgets/tooltip.dart';
 
 void main() {
@@ -38,6 +46,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(),
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale("en"),
+        Locale("ja"),
+      ],
     );
   }
 }
@@ -69,22 +85,37 @@ class _MyHomePageState extends State<MyHomePage> {
             _NavigatorButton(label: 'Column', page: ColumnSample()),
             _NavigatorButton(label: 'Row', page: RowSample()),
             _NavigatorButton(
-                label: 'Stack & Positioned', page: StackAndPositionedSample()),
+              label: 'Stack & Positioned',
+              page: StackAndPositionedSample(),
+            ),
             _NavigatorButton(label: 'ListView', page: ListViewSample()),
             _NavigatorButton(label: 'GridView', page: GridViewSample()),
             _NavigatorButton(label: 'ListTile', page: ListTileSample()),
             _NavigatorButton(
-                label: 'ElevatedButton', page: ElevatedButtonSample()),
+              label: 'ElevatedButton',
+              page: ElevatedButtonSample(),
+            ),
             _NavigatorButton(
-                label: 'FloatingActionButton',
-                page: FloatingActionButtonSample()),
+              label: 'FloatingActionButton',
+              page: FloatingActionButtonSample(),
+            ),
             _NavigatorButton(label: 'DropDown', page: DropDownSample()),
             _NavigatorButton(
-                label: 'PopupMenuButton', page: PopupMenuButtonSample()),
+              label: 'PopupMenuButton',
+              page: PopupMenuButtonSample(),
+            ),
+            _NavigatorButton(label: 'CheckBox', page: CheckBoxSample()),
+            _NavigatorButton(label: 'Radio', page: RadioSample()),
+            _NavigatorButton(label: 'Switch', page: SwitchSample()),
+            _NavigatorButton(label: 'Slider', page: SliderSample()),
+            _NavigatorButton(label: 'DatePicker', page: DateTimePickerSample()),
+            _NavigatorButton(label: 'TimePicker', page: TimePickerSample()),
+            _NavigatorButton(label: 'SnackBar', page: SnackBarSample()),
             _NavigatorButton(label: 'AlertDialog', page: AlertDialogSample()),
             _NavigatorButton(
-                label: 'Bottom Navigation Bar',
-                page: BottomNavigationBarSample()),
+              label: 'Bottom Navigation Bar',
+              page: BottomNavigationBarSample(),
+            ),
             _NavigatorButton(label: 'TabBar', page: TabBarSample()),
             _NavigatorButton(label: 'Drawer', page: DrawerSample()),
             _NavigatorButton(label: 'Tooltip', page: ToolTipSample()),

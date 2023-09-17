@@ -2,7 +2,6 @@
 title: "基本のウィジェット"
 ---
 
-
 :::message alert
 この教材では、Flutterに注力して学習を進めます。そのため、クラスやメソッドなど、文法の基礎的な箇所については省略します
 :::
@@ -726,19 +725,17 @@ Radioウィジェットには以下のパラメーターが指定できます。
 - groupValue: ラジオボタンのグループの値。
 - onChanged: ラジオボタンの値が変更されたときに呼び出される関数。
 - activeColor: ラジオボタンがオンになっている時の色。
-- checkColor: ラジオボタンのチェックマークの色。
 
 ```dart
 Radio(
-  value: '選択肢1',
+  value: RadioOption.one,
   groupValue: _selectedValue,
-  onChanged: (String value) {
+  onChanged: (value) {
     // ラジオボタンの値が変更されたときに実行される処理
     _selectedValue = value;
   },
-  activeColor: Colors.red,
-  checkColor: Colors.white,
-);
+  activeColor: Colors.blue,
+),
 ```
 ## Switch
 https://api.flutter.dev/flutter/material/Switch-class.html
@@ -793,19 +790,21 @@ Slider(
   label: 'Value',
   onChanged: (double value) {
     // スライダーの値が変更されたときに実行される処理
-    _value = value;
+    setState(() {
+        _value = value;
+    });
   },
   activeColor: Colors.red,
   inactiveColor: Colors.grey,
 );
 ```
-## DatePickerDialog
+## showDatePicker
 
 https://api.flutter.dev/flutter/material/DatePickerDialog-class.html
 
 https://api.flutter.dev/flutter/material/showDatePicker.html
 
-`DatePickerDialog`ウィジェットは、日付選択ダイアログを作成するために使用されます。日付選択ダイアログは、ユーザーが日付を選択できるウィジェットです。
+`DatePickerDialog`ウィジェットは、日付選択ダイアログを作成するために使用されます。日付選択ダイアログは、ユーザーが日付を選択できるウィジェットです。表示する際には、`showDatePicker`メソッドを用いて表示します。
 
 ![](https://storage.googleapis.com/zenn-user-upload/6f65f702b522-20230815.png)
 
@@ -815,31 +814,43 @@ DatePickerウィジェットには以下のパラメーターが指定できま�
 - firstDate: 日付ピッカーで選択できる最小日付。
 - lastDate: 日付ピッカーで選択できる最大日付。
 - initialDate: 日付ピッカーで最初に表示される日付。
-- onChanged: 日付ピッカーで選択された日付が変更されたときに呼び出される関数。
 - style: 日付ピッカーのスタイル。
 
+まずは、日本語対応するために`pubspec.yaml`に以下を追加してください。
+```diff yaml
+  flutter:
+    sdk: flutter
++  flutter_localizations:
++    sdk: flutter
+```
+
+次に、`MaterialApp`に以下を追加してください。
+```diff Dart
++ localizationsDelegates: const [
++   GlobalMaterialLocalizations.delegate,
++   GlobalWidgetsLocalizations.delegate,
++ ],
++ supportedLocales: const [
++   Locale("en"),
++   Locale("ja"),
++ ],
+```
+
+実際に以下の使い方をします。
 ```dart
-DatePickerDialog(
-  value: _selectedDate,
-  firstDate: DateTime.now(),
-  lastDate: DateTime.now().add(Duration(days: 365)),
+showDatePicker(
+  context: context,
   initialDate: DateTime.now(),
-  onChanged: (DateTime value) {
-    // 日付ピッカーで選択された日付が変更されたときに実行される処理
-    _selectedDate = value;
-  },
-  style: DatePickerStyle(
-    backgroundColor: Colors.white,
-    hintText: 'Select a date',
-    datePickerMode: DatePickerMode.day,
-  ),
-);
+  firstDate: DateTime.parse('2000-01-01'),
+  lastDate: DateTime.now(),
+  locale: const Locale('ja', 'JP'),
+)
 ```
 
 ## TimePickerDialog
 https://api.flutter.dev/flutter/material/TimePickerDialog-class.html
 
-TimePickerウィジェットは、時間ピッカーを作成するために使用されます。時間ピッカーは、ユーザーが時間を選択できるウィジェットです。
+TimePickerウィジェットは、時間ピッカーを作成するために使用されます。時間ピッカーは、ユーザーが時間を選択できるウィジェットです。表示する際は`showTimePicker`メソッドを用いて表示します
 
 ![](https://storage.googleapis.com/zenn-user-upload/e8c345c1bcd8-20230815.png)
 
@@ -847,17 +858,38 @@ TimePickerウィジェットは、時間ピッカーを作成するために使�
 
 - value: 時間ピッカーで選択されている時間。
 - initialTime: 時間ピッカーで最初に表示される時間。
-- onChanged: 時間ピッカーで選択された時間が変更されたときに呼び出される関数。
-- style: 時間ピッカーのスタイル。
 
 ```Dart
+// 変数
+TimeOfDay _selectedTime = TimeOfDay.now();
 
+// 表示
+showTimePicker(
+  context: context,
+  initialTime: _selectedTime,
+).then((time) {
+  setState(() {
+    _selectedTime = time ?? TimeOfDay.now();
+  });
+});
+```
+
+また、`TimeOfDay`の変数を普通に表示してしまうと以下のようになってしまいます。
+```dart
+print(_selectedTime.toString());
+// TimeOfDay(10:20)
+```
+
+明確に`10:20`だけ表示したい場合は、`format()`を用いて表示させましょう。
+```dart
+print(_selectedTime.fotmat(context));
+// 10:20
 ```
 
 ## SnackBar
 https://api.flutter.dev/flutter/material/SnackBar-class.html
 
-![](https://storage.googleapis.com/zenn-user-upload/e5512701440e-20230815.png)
+![](https://storage.googleapis.com/zenn-user-upload/b69203f9adb7-20230917.png =350x)
 
 SnackBarウィジェットは、画面下部に表示されるメッセージボックスです。ユーザーに重要な情報を通知したり、アクションを促したりするために使用できます。
 
