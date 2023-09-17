@@ -25,6 +25,13 @@
             "program": "../widget_samples/lib/main.dart"
         },
         {
+            "name": "go_router_demo",
+            "cwd": "widget_samples",
+            "request": "launch",
+            "type": "dart",
+            "program": "../widget_samples/lib/navigator/main.dart"
+        },
+        {
             "name": "weekly_tasks",
             "cwd": "widget_samples",
             "request": "launch",

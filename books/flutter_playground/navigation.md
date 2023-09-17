@@ -268,7 +268,12 @@ https://github.com/csells/go_router/blame/main/docs/ja/index.mdx
 
 ## 基本的な書き方
 
-まずは、go_routerの基本的な書き方を確認してみましょう！
+まずは、`go_router`の基本的な書き方を確認してみましょう！
+
+`go_router`のイメージとして、あらかじめ`path`, `name`, `builder`（画面）を階層構造に定義することができます。
+
+![](https://storage.googleapis.com/zenn-user-upload/263a7c67fcd9-20230901.png =600x)
+
 
 ```dart
 import 'package:flutter/material.dart';
@@ -337,7 +342,7 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp.router( // ルーティングの反映をするので.routerをつける
       theme: ThemeData(
         useMaterial3: true,
         primaryColor: Colors.white,
@@ -500,12 +505,290 @@ class PageA2 extends StatelessWidget {
 ```
 
 ## 上記のコードのコーディングの手順
+go_routerによるルーティングを定義するには、以下のような流れで実装するとやりやすいと思います。
+
+1. ホームの画面を実装
+2. 遷移先用のサンプル画面の実装
+3. `final router = GoRouter(...)`のように変数定義をする。
+4. `GoRouter`の`initialRoute`と`routes`にホーム画面の定義をする
+5. MaterialAppに設定をする
+6. 他の画面を追加する
+
+実際に、やっていきましょう。
+
+### 0. 初期状態
+まずは、`main`関数から初期画面までを実装します。
+
+:::details 初期状態のコード
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    const MaterialApp(
+      home: NavigatorSample(),
+    ),
+  );
+}
+
+class NavigatorSample extends StatelessWidget {
+  const NavigatorSample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Navigatorサンプル'),
+      ),
+    );
+  }
+}
+
+```
+:::
+
+### 1. ホーム画面を実装
+次に、仮のホーム画面を実装します。
+
+:::details ホーム画面を実装
+```dart: main.dart
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text('ボタン'),
+        ),
+      ),
+    );
+  }
+}
+```
+:::
+
+### 2. 遷移先画面の実装
+次に、サンプルで遷移する先の画面を実装しましょう。
+
+:::details 遷移先画面の定義
+```dart: sample.dart
+import 'package:flutter/material.dart';
+
+class SamplePage extends StatelessWidget {
+  const SamplePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sample'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {},
+          child: const Text('ボタン'),
+        ),
+      ),
+    );
+  }
+}
+```
+:::
+
+### 3. router変数の定義
+各画面ができたため、画面のURLを定義したルーティングを実装しましょう。
+
+:::details router変数の定義
+```dart: router.dart
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+import 'home_page.dart';
+import 'sample_page.dart';
+
+final GoRouter router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomePage(),
+    ),
+    // アニメーションを実装したい場合などは、pageBuilderを使う
+    GoRoute(
+      path: '/home',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: HomePage(),
+      ),
+    ),
+    // サンプル画面
+    GoRoute(
+      path: '/sample',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SamplePage(),
+      ),
+    ),
+  ],
+);
+```
+:::
+
+### 4. GoRouterの初期パラメーターの設定
+先ほどルーティングを定義した`router`変数に、追加でパラメーターの設定をしてみましょう。
+複雑なセクションは後半で実施しますが、定番の以下の2つのパラメーターを追加しましょう。
+- `initialLocation`: 初期URL
+- `debugLogDiagnostics`: デバッグログを表示するか
+
+:::details GoRouterクラスの設定
+```diff dart: router.dart
+final GoRouter router = GoRouter(
++   initialLocation: '/', // 初期表示画面
++   debugLogDiagnostics: true, // デバッグログの有効化
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const HomePage(),
+    ),
+    // アニメーションを実装したい場合などは、pageBuilderを使う
+    GoRoute(
+      path: '/home',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: HomePage(),
+      ),
+    ),
+    // サンプル画面
+    GoRoute(
+      path: '/sample',
+      pageBuilder: (context, state) => const MaterialPage(
+        child: SamplePage(),
+      ),
+    ),
+  ],
+);
+```
+:::
+
+### 5. MaterialAppクラスへの適応
+先ほどの`router`変数で定義したものは、`MaterialApp`クラスに適応することでプロジェクトに`go_router`を設定することができます。
+
+:::details MaterialAppへの適応
+```diff dart: router.dart
+import 'package:flutter/material.dart';
+
+import '../router/router.dart';
+
+void main() {
+  runApp(
+ -    MaterialApp(
+ +    MaterialApp.router(
+ -      home: const NavigatorSample(),
+ +      routeInformationParser: router.routeInformationParser,
+ +      routerDelegate: router.routerDelegate,
+ +      routeInformationProvider: router.routeInformationProvider,
+    ),
+  );
+}
+```
+:::
+
+### 6. 他の画面遷移の設定を追加
+それぞれ画面遷移するために、遷移ロジックを含んだボタンを実装していきます。
+:::details NavigatorSample
+```diff dart: main.dart
+class NavigatorSample extends StatelessWidget {
+  const NavigatorSample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Navigatorサンプル'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
++             context.push('/home');
+          },
+          child: const Text('Home Pageへ遷移'),
+        ),
+      ),
+    );
+  }
+}
+```
+:::
+
+:::details HomePage
+```diff dart: home_page.dart
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
++             context.push('/sample');
+          },
+          child: const Text('Sample Pageへ遷移'),
+        ),
+      ),
+    );
+  }
+}
+```
+:::
 
 
+:::details SamplePage
+```diff dart: sample_page.dart
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+
+class SamplePage extends StatelessWidget {
+  const SamplePage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Sample'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
++             context.go('/');
+          },
+          child: const Text('ボタン'),
+        ),
+      ),
+    );
+  }
+}
+```
+:::
+## 完成系
+コードベースの説明になってしまいましたが、1~6を整理すると以下のようになります。
+
+TODO: gitリンク記載
 
 ## 基本のメソッド
 
 https://pub.dev/documentation/go_router/latest/go_router/GoRouterHelper.html
+
+`go_router`にも、`Navigator`同様に標準のヘルパー関数があります。
+知っておきたいものを紹介していくので、動かしながら確認してみましょう。
+先ほどの完成系のコードをいじりながら動作確認していきます。
 
 ## 細かいルーティング処理
 - パラメーター
