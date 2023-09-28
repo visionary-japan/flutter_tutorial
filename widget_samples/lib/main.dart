@@ -49,10 +49,11 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        Locale("en"),
-        Locale("ja"),
+        Locale("en", "US"),
+        Locale("ja", "JP"),
       ],
     );
   }
@@ -162,6 +163,7 @@ class _NavigatorButton extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
+              // PageRouteBuilder(pageBuilder: (_, __, ___) => page),
               MaterialPageRoute(
                 builder: (context) => page,
               ),
